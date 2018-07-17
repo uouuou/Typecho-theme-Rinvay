@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
 
-<!--个站API-->
+<!--个站API选择切换-->
 <script>
     <?php if ($this->options->links == 'able'): ?>
     var url = "https://storeweb.cn/api/friend_link";
