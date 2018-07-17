@@ -15,7 +15,16 @@ https://github.com/uouuou/Typecho-theme-Rinvay
 https://www.rinvay.cc
 
 ## 主题亮点
-
+#### 2018/07/16
+ - 修复主题发文章内超链接没有下划线，样式不正确。
+ - 更改文章内部段落间隙。
+ - 根据[Jrotty](https://qqdie.com/archives/typecho-attachments-attachment-address.html "Jrotty")大佬的这个帖子让附件无法评论。
+ - 更新部分样式。
+#### 2018/07/03新增
+ - 优化Emoji显示。
+ - 新增图片友情链接，参考[Jrotty](https://qqdie.com/about.html "Jrotty")大佬的方案设计。
+ - 新增时间轴页面。
+ - 修复部分BUG
 #### 2018/06/19新增
  - 增加Emoji设置，可以设置以图片为原型的Emoji 
  - 增加全新的代码高亮，支持AHK等冷门语种（其实是我自己用得上，如果你不需要这么多可以在我Blog去留言，我帮你弄小的）
