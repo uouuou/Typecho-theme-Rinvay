@@ -19,7 +19,14 @@ function themeConfig($form) {
             'disable' => _t('禁止'),
         ),
         'able', _t('启用 Emoji 表情'), _t('启用后可在编辑器里插入 Emoji 表情符号'));
-    $form->addInput($emoji);		
+    $form->addInput($emoji);	
+	
+    $links = new Typecho_Widget_Helper_Form_Element_Radio('links',
+        array('able' => _t('个站官方'),
+              'disable' => _t('Rinvay代理'),
+        ),
+        'able', _t('个站友链项目'), _t('选择个站友链API接口，若个站HTTPS接口不能使用可选择Rinvay代理接口'));
+    $form->addInput($links);
 	
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
         array('able' => _t('启用'),
