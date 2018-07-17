@@ -67,6 +67,36 @@ https://www.rinvay.cc
  - CDN设置部分仅仅测试了七牛的，理论上也支持有镜像服务的CDN
  - 创建模板归档页，无论选择了哪个模板都要加上自定义字段`archive`
 
+**友情链接**
+创建新界面的时候选择link页为模板，然后按照如下方式输入即可完成友情链接创建。
+```php
+- ![Rinvay][211][Rinvay][112]
+[112]: https://www.rinvay.cc/
+[211]: https://pic.leus.cc/images/9a48573151fb54e21a4112a0a0226e7f.md.png
+```
+*如果要使用来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>只需要在适当的位置插入如下这段话，即可获得和我一模一样的个站友链体验。*
+```html
+*这些友情链接是来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>*
+!!!
+<ul>
+<div class="contents">
+	
+	<script type="text/html" id="links-template" data-no-instant>
+		<a href="%%domain%%" target="_blank">
+			<div class="rinvay-links">
+			  <img class="rinvay" src="%%logo_cn%%"/>
+			  <p>%%name%%</p>
+			  <i class="tip %%update_hide%%">
+					%%update_count%%
+			  </i>
+			</div>
+		 </a> 
+	</script>
+</div>
+</ul>
+!!!
+```
+
 **独立搜索页**
 
 设置方法看这里：[Here](https://www.linpx.com/p/add-a-separate-search-page-to-the-pinghsu-theme.html)
@@ -90,10 +120,11 @@ https://www.rinvay.cc
 **个性化色块**
 
 
-个性化色块需要到外观设置那开启才能激活使用，色块出现的地方有首页，分类页，标签页，独立搜索页等等
+个性化色块需要到外观设置那开启才能激活使用，色块出现的地方有首页，分类页，标签页，独立搜索页等等~~
 
 设置方法是在文章编辑内填写自定义字段，支持的字段如下
 
 `blue`、`purple`、`green`、`yellow`、`red`
 
 备注：由于去掉了三栏色块，在主页的色块设置将不被显示
+
