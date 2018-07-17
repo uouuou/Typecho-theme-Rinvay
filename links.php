@@ -11,8 +11,9 @@ $this->need('header.php');
 
 <!--个站API-->
 <script>
+	
     var url = "https://oo.o0o.fun/api/friend_link";
-	var logo_size = 2;
+    var logo_size = 2;
     function get_friend_link_api(timeout) {
         $.ajax({
             type: 'get',
