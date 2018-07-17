@@ -1585,6 +1585,10 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	color:#fff;
 	background-color:#db4437
 }
+.post-bottom-bar .bottom-bar-item.bottom-bar-qzone a {
+	color:#fff;
+	background-color:#e8923d
+}
 .post-bottom-bar .bottom-bar-item.bottom-bar-qrcode a {
 	color:#fff;
 	background-color:#4caf50
