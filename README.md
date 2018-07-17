@@ -15,6 +15,10 @@ https://github.com/uouuou/Typecho-theme-Rinvay
 https://www.rinvay.cc
 
 ## 主题亮点
+#### 2018/07/17
+ - 全球第一个支持个站友链项目<a style="color:#FA8072" href="http://storeweb.cn" target="_blank">『小红帽友链』</a>的主题，若需要支持请跳转大小红帽友链注册并设置你关注站点为友链即可实现，具体设置参照下方设置方法。
+ - 新增个站API选择
+ 
 #### 2018/07/16
  - 修复主题发文章内超链接没有下划线，样式不正确。
  - 更改文章内部段落间隙。
@@ -74,7 +78,7 @@ https://www.rinvay.cc
 [112]: https://www.rinvay.cc/
 [211]: https://pic.leus.cc/images/9a48573151fb54e21a4112a0a0226e7f.md.png
 ```
-*如果要使用来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>只需要在适当的位置插入如下这段话，即可获得和我一模一样的个站友链体验。*
+如果要使用来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>只需要在适当的位置插入如下这段话，即可获得和我一模一样的个站友链体验。
 ```html
 *这些友情链接是来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>*
 !!!
