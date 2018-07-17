@@ -11,8 +11,12 @@ $this->need('header.php');
 
 <!--个站API-->
 <script>
-	
+    <?php if ($this->options->links == 'able'): ?>
+    var url = "https://storeweb.cn/api/friend_link";
+    <?php endif; ?>
+    <?php if ($this->options->links == 'disable'): ?>
     var url = "https://oo.o0o.fun/api/friend_link";
+    <?php endif; ?>	
     var logo_size = 2;
     function get_friend_link_api(timeout) {
         $.ajax({
