@@ -37,9 +37,9 @@ $comments->alt(' comment-odd', ' comment-even');
 ?>">
     <div id="<?php $comments->theId(); ?>">
         <?php
-            $host = 'https://secure.gravatar.com';
+            $host = 'https://gravatar.o0o.fun';
             $url = '/avatar/';
-            $size = '80';
+            $size = '101';
             $default = 'mm';
             $rating = Helper::options()->commentsAvatarRating;
             $hash = md5(strtolower($comments->mail));
@@ -71,6 +71,7 @@ $comments->alt(' comment-odd', ' comment-even');
     <div id="comments" class="clearfix">
         <?php $this->comments()->to($comments); ?>
         <?php if($this->allow('comment')): ?>
+        <?php if ($this->is('attachment')) : ?>
         <span class="response">评论<?php if($this->user->hasLogin()): ?> / 尊敬的会员 <a href="<?php $this->options->profileUrl(); ?>" data-no-instant><?php $this->user->screenName(); ?></a>, 你想要 <a href="<?php $this->options->logoutUrl(); ?>" title="Logout" data-no-instant>退出</a> 吗?<?php endif; ?> <?php $comments->cancelReply(' / Cancel Reply'); ?></span>
         <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="comment-form" role="form" onsubmit ="getElementById('misubmit').disabled=true;return true;">
             <?php if(!$this->user->hasLogin()): ?>
@@ -85,6 +86,7 @@ $comments->alt(' comment-odd', ' comment-even');
             <?php $security = $this->widget('Widget_Security'); ?>
             <input type="hidden" name="_" value="<?php echo $security->getToken($this->request->getReferer())?>">
         </form>
+        <?php endif; ?>
         <?php else : ?>
             <span class="response">Comments are closed.</span>
         <?php endif; ?>
