@@ -342,7 +342,7 @@ function getBuildTime(){
 		$value["seconds"] = floor($time);
 		
 		// echo '已运行'.$value['years'].'年'.$value['days'].'天'.$value['hours'].'小时'.$value['minutes'].'分';
-		echo 'Running '.$value['days'].'Dya'.$value['hours'].'Hor'.$value['minutes'].'Min';
+		echo 'Running '.$value['days'].'Day'.$value['hours'].'Hor'.$value['minutes'].'Min';
 	}else{
 		echo '';
 	}
