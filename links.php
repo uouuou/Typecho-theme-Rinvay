@@ -69,7 +69,7 @@ $this->need('header.php');
 			if (value.update_count == 0) {
 				template = template.replace('%%update_hide%%', 'hide');
 			} else {
-				template = template.replace('%%update_hide%%',);
+				template = template.replace('%%update_hide%%','F');
 			}
 			var template_id = $(template);
 			$('.contents').prepend(template_id);
