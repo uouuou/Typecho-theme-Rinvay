@@ -15,6 +15,10 @@ https://github.com/uouuou/Typecho-theme-Rinvay
 https://www.rinvay.cc
 
 ## 主题亮点
+#### 2018/07/20
+ - 更新个站API支持InstantClick。
+ - 更新主题支持表情回复，使用[OwO](https://github.com/DIYgod/OwO "OwO")支持。
+ - 目前pjax关闭是开启jq pajx开启是使用InstantClick，请酌情选择。
 #### 2018/07/17
  - 全球第一个支持个站友链项目<a style="color:#FA8072" href="http://storeweb.cn" target="_blank">『小红帽友链』</a>的主题，若需要支持请跳转大小红帽友链注册并设置你关注站点为友链即可实现，具体设置参照下方设置方法。
  - 新增个站API选择
