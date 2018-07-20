@@ -19,20 +19,20 @@ function themeConfig($form) {
             'disable' => _t('禁止'),
         ),
         'able', _t('启用 Emoji 表情'), _t('启用后可在编辑器里插入 Emoji 表情符号'));
-    $form->addInput($emoji);	
-	
+    $form->addInput($emoji);		
+		
     $links = new Typecho_Widget_Helper_Form_Element_Radio('links',
         array('able' => _t('个站官方'),
               'disable' => _t('Rinvay代理'),
         ),
         'able', _t('个站友链项目'), _t('选择个站友链API接口，若个站HTTPS接口不能使用可选择Rinvay代理接口'));
-    $form->addInput($links);
+    $form->addInput($links);	
 	
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
         array('able' => _t('InstantClick'),
             'disable' => _t('Pjax'),
         ),
-        'disable', _t('PJAX加速设置'), _t('默认Pjax，若启用InstantClick则需提前到关闭‘开启反垃圾保护’,开关在‘设置-评论’，同时回复表情暂时无法使用'));
+        'disable', _t('PJAX加速设置'), _t('默认Pjax，若启用InstantClick则需提前到关闭‘开启反垃圾保护’,开关在‘设置-评论’，同时回复表情暂时无法使用。'));
     $form->addInput($pjaxSet);
 
     $DnsPrefetch = new Typecho_Widget_Helper_Form_Element_Radio('DnsPrefetch',
@@ -353,4 +353,95 @@ function getBuildTime(){
 	}else{
 		echo '';
 	}
+
+}
+
+function get_post_view($archive)
+{
+    $cid    = $archive->cid;
+    $db     = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')))) {
+        $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
+        echo 0;
+        return;
+    }
+    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
+    if ($archive->is('single')) {
+ $views = Typecho_Cookie::get('extend_contents_views');
+        if(empty($views)){
+            $views = array();
+        }else{
+            $views = explode(',', $views);
+        }
+if(!in_array($cid,$views)){
+       $db->query($db->update('table.contents')->rows(array('views' => (int) $row['views'] + 1))->where('cid = ?', $cid));
+array_push($views, $cid);
+            $views = implode(',', $views);
+            Typecho_Cookie::set('extend_contents_views', $views); //记录查看cookie
+        }
+    }
+    echo $row['views'];
+}
+//判断页面加载速度
+function timer_start() {
+global $timestart;
+$mtime = explode( ' ', microtime() );
+$timestart = $mtime[1] + $mtime[0];
+return true;
+}
+timer_start();
+function timer_stop( $display = 0, $precision = 3 ) {
+global $timestart, $timeend;
+$mtime = explode( ' ', microtime() );
+$timeend = $mtime[1] + $mtime[0];
+$timetotal = $timeend - $timestart;
+$r = number_format( $timetotal, $precision );
+if ( $display )
+echo $r;
+return $r;
+}
+//判断内容页是否百度收录
+function baidu_record() {
+$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
+
+if(checkBaidu($url)==1)
+{echo "百度已收录";
+}
+else
+{echo "<a style=\"color:red;\" rel=\"external nofollow\" title=\"点击提交收录！\" target=\"_blank\" href=\"http://zhanzhang.baidu.com/sitesubmit/index?sitename=$url\">百度未收录</a>";}
+}
+  function checkBaidu($url) { 
+    $url = 'http://www.baidu.com/s?wd=' . urlencode($url); 
+    $curl = curl_init(); 
+    curl_setopt($curl, CURLOPT_URL, $url); 
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); 
+    $rs = curl_exec($curl); 
+    curl_close($curl); 
+    if (!strpos($rs, '没有找到')) { //没有找到说明已被百度收录 
+        return 1; 
+    } else { 
+        return -1; 
+    } 
+}
+
+/**
+ * markdown
+ *
+ * @param mixed $text
+ * @access public
+ * @return string
+ */
+function markdown($text)
+{
+	$text = preg_replace('/\#\[\s*(呵呵|哈哈|吐舌|太开心|笑眼|花心|小乖|乖|捂嘴笑|滑稽|你懂的|不高兴|怒|汗|黑线|泪|真棒|喷|惊哭|阴险|鄙视|酷|啊|狂汗|what|疑问|酸爽|呀咩爹|委屈|惊讶|睡觉|笑尿|挖鼻|吐|犀利|小红脸|懒得理|勉强|爱心|心碎|玫瑰|礼物|彩虹|太阳|星星月亮|钱币|茶杯|蛋糕|大拇指|胜利|haha|OK|沙发|手纸|香蕉|便便|药丸|红领巾|蜡烛|音乐|灯泡|开心|钱|咦|呼|冷|生气|弱|吐血)\s*\]/is',
+		"@($1)", $text);
+	$text = preg_replace('/\#\(\s*(高兴|小怒|脸红|内伤|装大款|赞一个|害羞|汗|吐血倒地|深思|不高兴|无语|亲亲|口水|尴尬|中指|想一想|哭泣|便便|献花|皱眉|傻笑|狂汗|吐|喷水|看不见|鼓掌|阴暗|长草|献黄瓜|邪恶|期待|得意|吐舌|喷血|无所谓|观察|暗地观察|肿包|中枪|大囧|呲牙|抠鼻|不说话|咽气|欢呼|锁眉|蜡烛|坐等|击掌|惊喜|喜极而泣|抽烟|不出所料|愤怒|无奈|黑线|投降|看热闹|扇耳光|小眼睛|中刀)\s*\)/is',
+		"\\#($1)", $text);
+
+
+	//$html = Markdown::convert($text);
+	$html = $text;
+
+	return $html;
 }
