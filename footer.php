@@ -32,10 +32,11 @@
                         <?php endif; ?>
                     </a>
 					<div class="info-text">	
-                    	<p>Theme is <a href="https://www.rinvay.cc" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc/archives/225/" target="_blank">Rinvay.H</a></p>
+                    	<p>Theme is <a href="https://www.rinvay.cc" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
 						<p>Powered by Typecho V1.2</p>
 						<p><?php getBuildTime(); ?></p>
 						<p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
+						<p id="binft"></p>
 					</div>
 				</div>
 			</div>
@@ -53,6 +54,79 @@
 		</div>
 	</div>
 </footer>
+
+<?php if ($this->options->pjaxSet == 'disable'): ?>
+<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+<link href="<?php $this->options->themeUrl('css/nprogress.min.css?v20180720'); ?>" rel="stylesheet">
+<script>
+console.log('pjax ok!');
+$(document).pjax('a[href^="<?php Helper::options()->siteUrl()?>"]:not(a[target="_blank"], a[no-pjax])', {
+	container: '#leus',
+	//fragment: '#leus',
+	timeout: 8000
+	}).on('pjax:send', function() {
+		NProgress.start();
+		console.log( 'pjax start' );
+	}).on('pjax:complete', function() {
+		console.log( 'pjax end' );
+		NProgress.done();
+		loadMeting();
+		<?php if ($this->options->useHighline == 'able'): ?>
+		var blocks = document.querySelectorAll('pre code');
+		for (var i = 0; i < blocks.length; i++) {
+			hljs.highlightBlock(blocks[i]);
+		}
+		<?php endif; ?>
+
+	});
+</script>
+ <?php endif; ?>
+<!--底部彩色文字-->
+<script>
+var binft = function (r) {
+    function t() {
+        return b[Math.floor(Math.random() * b.length)]
+    }
+
+    function e() {
+        return String.fromCharCode(94 * Math.random() + 33)
+    }
+
+    function n(r) {
+        for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+            var l = document.createElement("span");
+            l.textContent = e(), l.style.color = t(), n.appendChild(l)
+        }
+        return n
+    }
+
+    function i() {
+        var t = o[c.skillI];
+        c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+    }
+    var l = "",
+        o = ["我不会PHP、CSS", "我也不会JAVA、JS","我就是单纯的喜欢","博客我是乱写的", "重庆很好玩的说", "一花一世界，一图一故事", "一花一世界，一叶一菩提"].map(function (r) {
+            return r + "."
+        }),
+        a = 2,
+        g = 1,
+        s = 5,
+        d = 75,
+        b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+        c = {
+            text: "",
+            prefixP: -s,
+            skillI: 0,
+            skillP: 0,
+            direction: "forward",
+            delay: a,
+            step: g
+        };
+    i()
+};
+binft(document.getElementById('binft'));
+</script>
 
 <?php if (($this->options->tableOfContents == 'able') && ($this->is('post'))): ?>
 <div id="directory-content" class="directory-content">
@@ -229,17 +303,16 @@ addCommentInputValue();
 <?php $this->footer(); ?>
 <script src="https://cdn.bootcss.com/headroom/0.9.4/headroom.js"></script>
 <script src="https://cdn.bootcss.com/headroom/0.9.4/headroom.min.js"></script>
+<script src="https://cdn.bootcss.com/emojify.js/1.1.0/js/emojify.min.js"></script>
+<script src="<?php $this->options->themeUrl('js/twemoji.js?v20180705'); ?>"></script>
 <?php if ($this->options->useHighline == 'able'): ?>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/apache.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/autohotkey.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/nginx.min.js"></script>
-<script src="https://cdn.bootcss.com/emojify.js/1.1.0/js/emojify.min.js"></script>
+
+
 
 <?php endif; ?>
-<?php if ($this->options->pjaxSet == 'able'): ?>
-<script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20140319'); ?>"></script>
-<?php endif; ?>
+
 <?php if ($this->options->fastClickSet == 'able'): ?>
 <script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
 <?php endif; ?>
@@ -336,6 +409,7 @@ InstantClick.on('change', function(isInitialLoad){
     <?php if($this->options->useMathjax == 'able'): ?>
         if (typeof MathJax !== 'undefined'){MathJax.Hub.Queue(["Typeset",MathJax.Hub]);}
     <?php endif; ?>
+		if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
     }
 	loadMeting(); // <-- reload Meting.JS
 });
