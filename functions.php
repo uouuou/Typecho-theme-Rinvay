@@ -29,10 +29,10 @@ function themeConfig($form) {
     $form->addInput($links);
 	
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
-        array('able' => _t('启用'),
-            'disable' => _t('禁止'),
+        array('able' => _t('InstantClick'),
+            'disable' => _t('Pjax'),
         ),
-        'disable', _t('PJAX加速设置'), _t('默认禁止，若启用则需提前到关闭‘开启反垃圾保护’,开关在‘设置-评论’'));
+        'disable', _t('PJAX加速设置'), _t('默认Pjax，若启用InstantClick则需提前到关闭‘开启反垃圾保护’,开关在‘设置-评论’，同时回复表情暂时无法使用'));
     $form->addInput($pjaxSet);
 
     $DnsPrefetch = new Typecho_Widget_Helper_Form_Element_Radio('DnsPrefetch',
