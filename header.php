@@ -31,7 +31,7 @@
     <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
     <link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/emojify.js/1.1.0/css/basic/emojify.min.css" rel="stylesheet">
-    <link href="<?php $this->options->themeUrl('style.min.css?20180619'); ?>" rel="stylesheet">	
+    <link href="<?php $this->options->themeUrl('css/style.min.css?20180619'); ?>" rel="stylesheet">	
 	<!--[百度统计]-->
 	<script>
 		var _hmt = _hmt || [];
