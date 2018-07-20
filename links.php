@@ -8,16 +8,17 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
-
-<!--个站API选择切换-->
-<script>
-    <?php if ($this->options->links == 'able'): ?>
-    var url = "https://storeweb.cn/api/friend_link";
-    <?php endif; ?>
-    <?php if ($this->options->links == 'disable'): ?>
-    var url = "https://oo.o0o.fun/api/friend_link";
-    <?php endif; ?>	
-    var logo_size = 2;
+<!--个站API-->
+<?php if ($this->options->pjaxSet == 'disable'): ?>
+<script data-no-instant>
+	console.log('Links api is ok!');
+	<?php if ($this->options->links == 'able'): ?>
+	var url = "https://storeweb.cn/api/friend_link";
+	<?php endif; ?>
+	<?php if ($this->options->links == 'disable'): ?>
+	var url = "https://oo.o0o.fun/api/friend_link";
+	<?php endif; ?>
+	var logo_size = 2;
     function get_friend_link_api(timeout) {
         $.ajax({
             type: 'get',
@@ -80,9 +81,85 @@ $this->need('header.php');
 		$('.site-friend-link-project').attr('href',information['project']);
 		//$('.site-friend-link-storeweb').attr('href',information['storeweb']);
 	}
-	
 </script>
-
+<?php endif; ?>
+<?php if ($this->options->pjaxSet == 'able'): ?>
+<script data-no-instant>
+InstantClick.on('change', function(isInitialLoad) {
+	console.log('Links api is ok!');
+	<?php if ($this->options->links == 'able'): ?>
+	var url = "https://storeweb.cn/api/friend_link";
+	<?php endif; ?>
+	<?php if ($this->options->links == 'disable'): ?>
+	var url = "https://oo.o0o.fun/api/friend_link";
+	<?php endif; ?>
+	var logo_size = 2;
+    function get_friend_link_api(timeout) {
+        $.ajax({
+            type: 'get',
+            url: url,
+            async: true,
+            dataType: 'jsonp',
+            data: {
+                size: logo_size
+            },			
+            timeout : 3000,
+            success: function (success) {
+                if (success['success'] == 1) {
+                    //console.log(success['data']);
+                    template_make(success['data']);
+                    set_storeweb_info(success['information']);
+                } else {
+                    $('.site-friend-link').html(success['info']);
+                }
+            },
+            complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+                if(status=='timeout'){//超时,status还有success,error等值的情况
+                    if(timeout==1){
+                        $('.site-friend-link').html('获取数据超时……请联系个站商店小彦');
+                    }else {
+                        var url = "https://cc.rinvay.cc/api/friend_link";
+                        $('.site-friend-link').html('https 获取数据超时……尝试http获取……');
+                        get_friend_link_api(1);
+                    }
+                }
+            }
+        });
+    }
+    $(function () {
+        $('.site-friend-link').html('正在向『个站商店』请求友链数据……');
+        get_friend_link_api(0);
+    })
+	function template_make(data) {
+		
+		//console.log(data)
+		$('.site-friend-link').html('');
+		$.each(data, function (key, value) {
+			//console.log(value.name);
+			var template = $('#links-template').text();
+			template = template.replace('%%name%%', value.name);
+			template = template.replace('%%logo_cn%%', value.logo_cn);
+			template = template.replace('%%intro_link%%', value.intro_link);
+			template = template.replace('%%domain%%', 'http://' + value.domain);
+			template = template.replace('%%update_count%%', value.update_count);
+			if (value.update_count == 0) {
+				template = template.replace('%%update_hide%%', 'hide');
+			} else {
+				template = template.replace('%%update_hide%%','F');
+			}
+			var template_id = $(template);
+			$('.contents').prepend(template_id);
+		})
+	}
+	function set_storeweb_info(information){
+		$('.site-friend-link-homepage').attr('href',information['homepage']);
+		$('.site-friend-link-project').attr('href',information['project']);
+		//$('.site-friend-link-storeweb').attr('href',information['storeweb']);
+	}
+});
+InstantClick.init('mousedown');
+</script>
+<?php endif; ?>
 <style>.content ul {
     font-size:0;
     padding: 0;}

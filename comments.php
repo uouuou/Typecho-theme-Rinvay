@@ -55,7 +55,7 @@ $comments->alt(' comment-odd', ' comment-even');
             </div>
             <div class="comment-meta">
                 <time class="comment-time"><?php $comments->date('M j, Y'); ?></time>
-                <span class="comment-reply"><?php $comments->reply('Reply'); ?></span>
+                <span class="comment-reply"><?php $comments->reply('回复'); ?></span>
             </div>
         </div>
     </div>
@@ -70,23 +70,26 @@ $comments->alt(' comment-odd', ' comment-even');
 <div id="<?php $this->respondId(); ?>" class="comment-container">
     <div id="comments" class="clearfix">
         <?php $this->comments()->to($comments); ?>
-        <?php if($this->allow('comment')): ?>
-        <?php if ($this->is('attachment')) : ?>
+        <?php if($this->allow('comment')): ?>		
+		<?php if ($this->is('attachment')) : ?>
+		<?php else: ?>
         <span class="response">评论<?php if($this->user->hasLogin()): ?> / 尊敬的会员 <a href="<?php $this->options->profileUrl(); ?>" data-no-instant><?php $this->user->screenName(); ?></a>, 你想要 <a href="<?php $this->options->logoutUrl(); ?>" title="Logout" data-no-instant>退出</a> 吗?<?php endif; ?> <?php $comments->cancelReply(' / Cancel Reply'); ?></span>
-        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="comment-form" role="form" onsubmit ="getElementById('misubmit').disabled=true;return true;">
+
+		<form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="comment-form" role="form" onsubmit ="getElementById('misubmit').disabled=true;return true;">
             <?php if(!$this->user->hasLogin()): ?>
             <input type="text" name="author" maxlength="12" id="author" class="form-control input-control clearfix" placeholder="称呼 (*)" value="" required>
             <input type="email" name="mail" id="mail" class="form-control input-control clearfix" placeholder="邮箱 (*)" value="" <?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?>>
             <input type="url" name="url" id="url" class="form-control input-control clearfix" placeholder="网址 (https://)" value="" <?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?>>
             <?php endif; ?>
 
-            <textarea name="text" id="textarea" class="form-control" placeholder="欢迎您的吐槽和指正~(～￣▽￣)～" required ><?php $this->remember('text',false); ?></textarea>
-
+            <textarea name="text" id="textarea" class="form-control" placeholder="欢迎您的吐槽和指正~(～￣▽￣)～" required ><?php $this->remember('text',false); ?></textarea>		
             <button type="submit" class="submit" id="misubmit">回复</button>
-            <?php $security = $this->widget('Widget_Security'); ?>
+            <?php $security = $this->widget('Widget_Security'); ?>			
             <input type="hidden" name="_" value="<?php echo $security->getToken($this->request->getReferer())?>">
+			<div class="OwO" data-no-instant></div>
         </form>
-        <?php endif; ?>
+		
+		<?php endif; ?>
         <?php else : ?>
             <span class="response">Comments are closed.</span>
         <?php endif; ?>
@@ -102,3 +105,23 @@ $comments->alt(' comment-odd', ' comment-even');
         <?php endif; ?>
     </div>
 </div>
+<!--OωO表情-->
+<script data-no-instant>
+// console.log(OwO);
+	var OwO = new OwO({
+			
+			logo: 'OωO',
+			container: document.getElementsByClassName('OwO')[0],
+			target: document.getElementsByName('text')[0],
+			api: '<?php $this->options->themeUrl('js/OwO.json?v20180718'); ?>',
+			position: 'down',
+			width: '100%;',
+			maxHeight: '250px'
+		});
+<?php if ($this->options->pjaxSet == 'able'): ?>
+InstantClick.on('change', function(isInitialLoad) {
+	
+});
+InstantClick.init('mousedown');
+<?php endif; ?>
+</script>

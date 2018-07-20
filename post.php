@@ -10,7 +10,7 @@
 				<?php $this->title() ?>
 			</div>
 			<div class="post-header-thumb-meta">
-				<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?></a>
+				<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?>and <?php get_post_view($this) ?> read</a>
 			</div>
 			<div class="post-tags">
 				<?php $this->tags(' ', true, ''); ?>
@@ -29,7 +29,7 @@
 				<?php $this->title() ?>
 			</div>
 			<div class="post-header-thumb-meta">
-				<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?></a>
+				<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?>and <?php get_post_view($this) ?> read</a>
 			</div>
 			<div class="post-tags">
 				<?php $this->tags(' ', true, ''); ?>
@@ -46,7 +46,7 @@
 				<?php $this->title() ?>
 			</div>
 			<div class="post-header-thumb-meta">
-				<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?></a>
+				<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?>and <?php get_post_view($this) ?> read</a>
 			</div>
 			<div class="post-tags">
 				<?php $this->tags(' ', true, ''); ?>
@@ -56,13 +56,15 @@
 </div>
 <?php endif;endif;endif; ?>
 
-<article class="main-content <?php if ($this->options->postshowthumb == 'able'): ?>post-page<?php else: ?>page-page<?php endif; ?>" itemscope itemtype="http://schema.org/Article">
+<article id="leus" class="main-content <?php if ($this->options->postshowthumb == 'able'): ?>post-page<?php else: ?>page-page<?php endif; ?>" itemscope itemtype="http://schema.org/Article">
 	<div class="post-header">
 		<h1 class="post-title" itemprop="name headline">
 			<?php $this->title() ?>
 		</h1>
+		
 		<div class="post-data">
-			<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?></a>
+			<time datetime="<?php $this->date('c'); ?>" itemprop="datePublished">Published on <?php $this->date('M j, Y'); ?></time> in <?php $this->category(''); ?> with <a href="#comments"><?php $this->commentsNum(_t(' 0 comment'), _t(' 1 comment'), _t(' %d comments')); ?>and <?php get_post_view($this) ?> read</a>
+		
 		</div>
 	</div>
 	<div id="post-content" class="post-content" itemprop="articleBody">
@@ -83,8 +85,8 @@
 			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($this->permalink()); ?>" target="_blank" title="<?php $this->title() ?>" rel="nofollow">facebook</a></span>
 			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=<?php echo urlencode($this->permalink()); ?>&text=<?php echo urlencode($this->title()); ?>" target="_blank" title="<?php $this->title() ?>" rel="nofollow">Twitter</a></span>
 			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=<?php echo urlencode($this->permalink()); ?>&amp;title=<?php echo urlencode($this->title()); ?>" target="_blank" title="<?php $this->title() ?>" rel="nofollow">Weibo</a></span>
-			<span class="bottom-bar-item bottom-bar-qzone"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php echo urlencode($this->permalink()); ?>&amp;title=<?php echo urlencode($this->title()); ?>" target="_blank" title="<?php $this->title() ?>" rel="nofollow">Qzone</a></span>			
-			<span class="bottom-bar-item bottom-bar-qrcode"><a href="http://qr.topscan.com/api.php?text=<?php echo urlencode($this->permalink()); ?>" target="_blank" rel="nofollow">QRcode</a></span>
+			<span class="bottom-bar-item bottom-bar-qzone"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php echo urlencode($this->permalink()); ?>&amp;title=<?php echo urlencode($this->title()); ?>" target="_blank" title="<?php $this->title() ?>" rel="nofollow">Qzone</a></span>
+			<span class="bottom-bar-item bottom-bar-qrcode"><a href="http://qr.topscan.com/api.php?text=<?php echo urlencode($this->permalink()); ?>" target="_blank" rel="nofollow">Weixin</a></span>
 		</div>
 		<div class="bottom-bar-items right">
 			<span class="bottom-bar-item"><?php theNext($this); ?></span>

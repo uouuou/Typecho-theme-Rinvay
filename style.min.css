@@ -1,7 +1,6 @@
 /**
  *
  *Rinvay.H Blog
- *https://rinvay.cc 
  *
  */
 @charset 'UTF-8';
@@ -1053,6 +1052,9 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	color:#313131;
 	border-bottom:1px solid #ccc
 }
+/* .post-content li { */
+    /* line-height: 1.9; */
+/* } */
 .post-content a:hover {
 	color:#eb5055;
 	border-bottom:1px solid #eb5055
@@ -1649,7 +1651,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 }
 .comment-container {
 	position:relative;
-	z-index:1;
+	z-index:2;
 	color:#5f5f5f;
 	background-color:#f7f7f7
 }
@@ -1699,6 +1701,10 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 .comment-view {
 	padding:20px;
 	cursor:pointer
+}
+.comment-view img {
+	height:30px;
+	margin-bottom:-7px
 }
 .comment-header {
 	display:inline-block;
@@ -1793,11 +1799,12 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	font-size:13px;
 	position:absolute;
 	right:20px;
-	bottom:20px;
+	bottom:15px;
 	display:block;
 	height:32px;
 	margin:0 auto;
 	padding:0 20px;
+	z-index:3;
 	-webkit-transition-duration:.4s;
 	transition-duration:.4s;
 	text-align:center;
@@ -1839,6 +1846,10 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 .footer-meta {
 	padding:50px 0 0;
 	list-style:none
+}
+.footer-meta img {
+	height:30px;
+	margin-bottom:-7px
 }
 .footer-meta .footer-container {
 	width:100%;
