@@ -1,5 +1,4 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-
 <footer id="footer" class="footer <?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-grey<?php elseif($this->is('single')): ?>bg-white<?php endif; ?>">
 	<div class="footer-social">
 		<div class="footer-container clearfix">
@@ -33,7 +32,7 @@
                     </a>
 					<div class="info-text">	
                     	<p>Theme is <a href="https://www.rinvay.cc" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
-						<p>Powered by Typecho V1.2</p>
+						<p>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a></p>
 						<p><?php getBuildTime(); ?></p>
 						<p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
 						<p id="binft"></p>
@@ -69,8 +68,6 @@ $(document).pjax('a[href^="<?php Helper::options()->siteUrl()?>"]:not(a[target="
 		NProgress.start();
 		console.log( 'pjax start' );
 	}).on('pjax:complete', function() {
-		console.log( 'pjax end' );
-		NProgress.done();
 		loadMeting();
 		<?php if ($this->options->useHighline == 'able'): ?>
 		var blocks = document.querySelectorAll('pre code');
@@ -78,7 +75,8 @@ $(document).pjax('a[href^="<?php Helper::options()->siteUrl()?>"]:not(a[target="
 			hljs.highlightBlock(blocks[i]);
 		}
 		<?php endif; ?>
-
+		NProgress.done();
+		console.log( 'pjax end' );
 	});
 </script>
  <?php endif; ?>
@@ -412,6 +410,105 @@ InstantClick.on('change', function(isInitialLoad){
 		if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
     }
 	loadMeting(); // <-- reload Meting.JS
+	$(document).ready(function(){
+		if (document.getElementsByName('text')[0] == null)
+		{
+			console.log('OωO boom!');
+			return;
+		}else{
+			console.log('OωO ok!');
+			window['LocalConst'] = {
+				BIAOQING_PAOPAO_PATH: '<?php $this->options->themeUrl('images/biaoqing/paopao/'); ?>',
+				BIAOQING_ARU_PATH: '<?php $this->options->themeUrl('images/biaoqing/aru/'); ?>',
+			};
+			//console.log(document.getElementsByName('text')[0]);
+			var owo = new OwO({		
+				logo: 'OωO',
+				container: document.getElementsByClassName('OwO')[0],
+				target: document.getElementsByName('text')[0],
+				api: '<?php $this->options->themeUrl('js/OwO.json?v20180718'); ?>',
+				position: 'down',
+				width: '100%;',
+				maxHeight: '250px'
+			});
+		}
+		
+	});	// <-- 引入表情
+	if (document.getElementsByName('rinvaylinks')[0] == null){
+		console.log('Links api boom!');
+	}else{
+		console.log('Links api ok!');
+		<?php if ($this->options->links == 'able'): ?>
+		var url = "https://storeweb.cn/api/friend_link";
+		<?php endif; ?>
+		<?php if ($this->options->links == 'disable'): ?>
+		var url = "https://oo.o0o.fun/api/friend_link";
+		<?php endif; ?>
+		var logo_size = 2;
+		function get_friend_link_api(timeout) {
+			$.ajax({
+				type: 'get',
+				url: url,
+				async: true,
+				dataType: 'jsonp',
+				data: {
+					size: logo_size
+				},			
+				timeout : 3000,
+				success: function (success) {
+					if (success['success'] == 1) {
+						//console.log(success['data']);
+						template_make(success['data']);
+						set_storeweb_info(success['information']);
+					} else {
+						$('.site-friend-link').html(success['info']);
+					}
+				},
+				complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+					if(status=='timeout'){//超时,status还有success,error等值的情况
+						if(timeout==1){
+							$('.site-friend-link').html('获取数据超时……请联系个站商店小彦');
+						}else {
+							var url = "https://cc.rinvay.cc/api/friend_link";
+							$('.site-friend-link').html('https 获取数据超时……尝试http获取……');
+							get_friend_link_api(1);
+						}
+					}
+				}
+			});
+		}
+		$(function () {
+			$('.site-friend-link').html('正在向『个站商店』请求友链数据……');
+			get_friend_link_api(0);
+		})
+		function template_make(data) {
+			
+			//console.log(data)
+			$('.site-friend-link').html('');
+			$.each(data, function (key, value) {
+				//console.log(value.name);
+				var template = $('#links-template').text();
+				template = template.replace('%%name%%', value.name);
+				template = template.replace('%%logo_cn%%', value.logo_cn);
+				template = template.replace('%%intro_link%%', value.intro_link);
+				template = template.replace('%%domain%%', 'http://' + value.domain);
+				template = template.replace('%%update_count%%', value.update_count);
+				if (value.update_count == 0) {
+					template = template.replace('%%update_hide%%', 'hide');
+				} else {
+					template = template.replace('%%update_hide%%','F');
+				}
+				var template_id = $(template);
+				$('.contents').prepend(template_id);
+			})
+		}
+		function set_storeweb_info(information){
+			$('.site-friend-link-homepage').attr('href',information['homepage']);
+			$('.site-friend-link-project').attr('href',information['project']);
+			//$('.site-friend-link-storeweb').attr('href',information['storeweb']);
+		}
+	}
+	
 });
 InstantClick.init('mousedown');
 </script>

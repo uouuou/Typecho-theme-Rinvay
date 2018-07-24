@@ -264,7 +264,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	box-shadow:0 15px 30px #F64848;
 	color:#fff;
 	opacity:.8;
-	cursor:url(images/pointer.cur),pointer
+	cursor:url(https://www.rinvay.cc/usr/themes/Rinvay/images/pointer.cur),pointer
 }
 @media only screen and (max-width:767px) {
 	.content .rinvay-links {
@@ -1702,13 +1702,18 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	padding:20px;
 	cursor:pointer
 }
+.comment-view p {
+	margin:0
+}
 .comment-view img {
 	height:30px;
-	margin-bottom:-7px
+	margin-bottom:-7px;
+	margin-top: -7px
 }
 .comment-header {
 	display:inline-block;
-	width:100%
+	width:100%;
+	height: 40px
 }
 .comment-header .avatar {
 	display:inline-block;
@@ -1723,7 +1728,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	line-height:45px;
 	display:inline-block;
 	float:left;
-	margin:0 20px
+	margin:-8px 20px
 }
 .comment-header .comment-by-author a {
 	color:#eb5055!important

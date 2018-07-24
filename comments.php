@@ -87,8 +87,7 @@ $comments->alt(' comment-odd', ' comment-even');
             <?php $security = $this->widget('Widget_Security'); ?>			
             <input type="hidden" name="_" value="<?php echo $security->getToken($this->request->getReferer())?>">
 			<div class="OwO" data-no-instant></div>
-        </form>
-		
+        </form>		
 		<?php endif; ?>
         <?php else : ?>
             <span class="response">Comments are closed.</span>
@@ -105,11 +104,58 @@ $comments->alt(' comment-odd', ' comment-even');
         <?php endif; ?>
     </div>
 </div>
+
+<script src="<?php $this->options->themeUrl('js/converter.min.js?v20180724'); ?>"></script>
+<script>
+	$(function(){
+		var len = $('.comment-content p').length;	
+		$.getJSON("<?php $this->options->themeUrl('js/OwwO.json?v20180724'); ?>", function (data){
+			for(var i in data.paopao.container){
+				for(var l = 0; l < len ; l ++) {
+					var _p = $('.comment-content p').eq(l).html();
+					let emjio = data.paopao.container[i];
+					//console.log(emjio);
+					//console.log(emjio);						
+						var reg=/@\([A-Za-z0-9_\-\u4e00-\u9fa5]+\)/g;
+						var base = encode(emjio, "base16").toUpperCase();
+						var url = "<?php $this->options->themeUrl('images/biaoqing/paopao/'); ?>"+base+".png";
+						//console.log(url);
+						var _pe = "<img src="+url+">";
+						//onsole.log(_pe);
+						_p=_p.replace(reg,function(a,b){
+							return emjio[a]; 
+						})
+						//console.log(_p);
+						$('.comment-content p').eq(l).html(_p)
+				}
+			}
+			for(var i in data.aru.container){
+				for(var l = 0; l < len ; l ++) {
+					var _p = $('.comment-content p').eq(l).html();
+					let emjio = data.aru.container[i];
+						var reg=/#\([A-Za-z0-9_\-\u4e00-\u9fa5]+\)/g;
+						var base = encode(emjio, "base16").toUpperCase();
+						var url = "<?php $this->options->themeUrl('images/biaoqing/aru/'); ?>"+base+".png";
+						//console.log(url);
+						var _pe = "<img src="+url+">";
+						//console.log(_pe);
+						_p=_p.replace(reg,function(a,b){
+							return emjio[a]; 
+						})
+						//console.log(_p);
+						$('.comment-content p').eq(l).html(_p)
+				}
+			}				
+		})
+		console.log("emjio ok!");
+	})	
+</script>
+
+<?php if ($this->options->pjaxSet == 'disable'): ?>
 <!--OωO表情-->
 <script data-no-instant>
-// console.log(OwO);
-	var OwO = new OwO({
-			
+	// console.log(OwO);
+	var owo = new OwO({		
 			logo: 'OωO',
 			container: document.getElementsByClassName('OwO')[0],
 			target: document.getElementsByName('text')[0],
@@ -117,11 +163,7 @@ $comments->alt(' comment-odd', ' comment-even');
 			position: 'down',
 			width: '100%;',
 			maxHeight: '250px'
-		});
-<?php if ($this->options->pjaxSet == 'able'): ?>
-InstantClick.on('change', function(isInitialLoad) {
-	
-});
-InstantClick.init('mousedown');
-<?php endif; ?>
+	});
 </script>
+<?php endif; ?>
+

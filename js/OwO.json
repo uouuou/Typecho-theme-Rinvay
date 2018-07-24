@@ -1,666 +1,417 @@
 {
-    "颜文字": {
-        "type": "emoticon",
-        "container": [
-                {
-                    "icon": "OωO",
-                    "text": "Author: DIYgod"
-                },
-                {
-                    "icon": "|´・ω・)ノ",
-                    "text": "Hi"
-                },
-                {
-                    "icon": "ヾ(≧∇≦*)ゝ",
-                    "text": "开心"
-                },
-                {
-                    "icon": "(☆ω☆)",
-                    "text": "星星眼"
-                },
-                {
-                    "icon": "（╯‵□′）╯︵┴─┴",
-                    "text": "掀桌"
-                },
-                {
-                    "icon": "￣﹃￣",
-                    "text": "流口水"
-                },
-                {
-                    "icon": "(/ω＼)",
-                    "text": "捂脸"
-                },
-                {
-                    "icon": "∠( ᐛ 」∠)＿",
-                    "text": "给跪"
-                },
-                {
-                    "icon": "(๑•̀ㅁ•́ฅ)",
-                    "text": "Hi"
-                },
-                {
-                    "icon": "→_→",
-                    "text": "斜眼"
-                },
-                {
-                    "icon": "୧(๑•̀⌄•́๑)૭",
-                    "text": "加油"
-                },
-                {
-                    "icon": "٩(ˊᗜˋ*)و",
-                    "text": "有木有WiFi"
-                },
-                {
-                    "icon": "(ノ°ο°)ノ",
-                    "text": "前方高能预警"
-                },
-                {
-                    "icon": "(´இ皿இ｀)",
-                    "text": "我从未见过如此厚颜无耻之人"
-                },
-                {
-                    "icon": "⌇●﹏●⌇",
-                    "text": "吓死宝宝惹"
-                },
-                {
-                    "icon": "(ฅ´ω`ฅ)",
-                    "text": "已阅留爪"
-                },
-                {
-                    "icon": "(╯°A°)╯︵○○○",
-                    "text": "去吧大师球"
-                },
-                {
-                    "icon": "φ(￣∇￣o)",
-                    "text": "太萌惹"
-                },
-                {
-                    "icon": "ヾ(´･ ･｀｡)ノ\"",
-                    "text": "咦咦咦"
-                },
-                {
-                    "icon": "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃",
-                    "text": "气呼呼"
-                },
-                {
-                    "icon": "(ó﹏ò｡)",
-                    "text": "我受到了惊吓"
-                },
-                {
-                    "icon": "Σ(っ °Д °;)っ",
-                    "text": "什么鬼"
-                },
-                {
-                    "icon": "( ,,´･ω･)ﾉ\"(´っω･｀｡)",
-                    "text": "摸摸头"
-                },
-                {
-                    "icon": "╮(╯▽╰)╭ ",
-                    "text": "无奈"
-                },
-                {
-                    "icon": "o(*////▽////*)q ",
-                    "text": "脸红"
-                },
-                {
-                    "icon": "＞﹏＜",
-                    "text": ""
-                },
-                {
-                    "icon": "( ๑´•ω•) \"(ㆆᴗㆆ)",
-                    "text": ""
-                },
-                {
-                    "icon": "(｡•ˇ‸ˇ•｡)",
-                    "text": ""
-                }
+    "泡泡":{
+        "type":"biaoqing",
+        "baseURL":"{BIAOQING_PAOPAO_PATH}",
+        "suffix":".png",
+        "retinaSuffix":"_2x.png",
+        "input":"@({NAME})",
+        "imgClass":"biaoqing newpaopao",
+        "container":[
+            "呵呵",
+            "哈哈",
+            "吐舌",
+            "太开心",
+            "笑眼",
+            "花心",
+            "小乖",
+            "乖",
+            "捂嘴笑",
+            "滑稽",
+            "你懂的",
+            "不高兴",
+            "怒",
+            "汗",
+            "黑线",
+            "泪",
+            "真棒",
+            "喷",
+            "惊哭",
+            "阴险",
+            "鄙视",
+            "酷",
+            "啊",
+            "狂汗",
+            "what",
+            "疑问",
+            "酸爽",
+            "呀咩爹",
+            "委屈",
+            "惊讶",
+            "睡觉",
+            "笑尿",
+            "挖鼻",
+            "吐",
+            "犀利",
+            "小红脸",
+            "懒得理",
+            "勉强",
+            "爱心",
+            "心碎",
+            "玫瑰",
+            "礼物",
+            "彩虹",
+            "太阳",
+            "星星月亮",
+            "钱币",
+            "茶杯",
+            "蛋糕",
+            "大拇指",
+            "胜利",
+            "haha",
+            "OK",
+            "沙发",
+            "手纸",
+            "香蕉",
+            "便便",
+            "药丸",
+            "红领巾",
+            "蜡烛",
+            "音乐",
+            "灯泡",			
+            "伤心",
+            "加油",
+            "必胜",
+            "期待",
+            "面壁",
+            "顶",
+			"牛逼",
+			"胜利了",
+			"跟丫死磕",
+			"踢球",
+			"给跪了"
+            
         ]
     },
-    "Emoji": {
-        "type": "emoji",
-        "container": [
-            {
-                "icon": "😂",
-                "text": ""
-            },
-            {
-                "icon": "😀",
-                "text": ""
-            },
-            {
-                "icon": "😅",
-                "text": ""
-            },
-            {
-                "icon": "😊",
-                "text": ""
-            },
-            {
-                "icon": "🙂",
-                "text": ""
-            },
-            {
-                "icon": "🙃",
-                "text": ""
-            },
-            {
-                "icon": "😌",
-                "text": ""
-            },
-            {
-                "icon": "😍",
-                "text": ""
-            },
-            {
-                "icon": "😘 ",
-                "text": ""
-            },
-            {
-                "icon": "😜",
-                "text": ""
-            },
-            {
-                "icon": "😝",
-                "text": ""
-            },
-            {
-                "icon": "😏",
-                "text": ""
-            },
-            {
-                "icon": "😒",
-                "text": ""
-            },
-            {
-                "icon": "🙄",
-                "text": ""
-            },
-            {
-                "icon": "😳 ",
-                "text": ""
-            },
-            {
-                "icon": "😡",
-                "text": ""
-            },
-            {
-                "icon": "😔",
-                "text": ""
-            },
-            {
-                "icon": "😫",
-                "text": ""
-            },
-            {
-                "icon": "😱",
-                "text": ""
-            },
-            {
-                "icon": "😭",
-                "text": ""
-            },
-            {
-                "icon": "💩",
-                "text": ""
-            },
-            {
-                "icon": "👻",
-                "text": ""
-            },
-            {
-                "icon": "🙌",
-                "text": ""
-            },
-            {
-                "icon": "🖕",
-                "text": ""
-            },
-            {
-                "icon": "👍",
-                "text": ""
-            },
-            {
-                "icon": "👫",
-                "text": ""
-            },
-            {
-                "icon": "👬",
-                "text": ""
-            },
-            {
-                "icon": "👭",
-                "text": ""
-            },
-            {
-                "icon": "🌚",
-                "text": ""
-            },
-            {
-                "icon": "🌝",
-                "text": ""
-            },
-            {
-                "icon": "🙈",
-                "text": ""
-            },
-            {
-                "icon": "💊",
-                "text": ""
-            },
-            {
-                "icon": "😶",
-                "text": ""
-            },
-            {
-                "icon": "🙏",
-                "text": ""
-            },
-            {
-                "icon": "🍦",
-                "text": ""
-            },
-            {
-                "icon": "🍉",
-                "text": ""
-            },
-            {
-                "icon": "😣",
-                "text": ""
-            }
+    "阿鲁":{
+        "type":"biaoqing",
+        "baseURL":"{BIAOQING_ARU_PATH}",
+        "suffix":".png",
+        "retinaSuffix":"_2x.png",
+        "input":"#({NAME})",
+        "imgClass":"biaoqing aru alu",
+        "container":[
+            "高兴",
+            "不高兴",
+            "皱眉",
+            "邪恶",
+            "大囧",
+            "惊喜",
+            "狗狗",
+            "猫咪",
+            "小眼睛",
+            "小怒",
+            "无语",
+            "傻笑",
+            "期待",
+            "呲牙",
+            "喜极而泣",
+            "脸红",
+            "亲亲",
+            "狂汗",
+            "得意",
+            "抠鼻",
+            "抽烟",
+            "内伤",
+            "口水",
+            "吐",
+            "吐舌",
+            "不说话",
+            "不出所料",
+            "装大款",
+            "尴尬",
+            "喷水",
+            "喷血",
+            "咽气",
+            "愤怒",
+            "赞一个",
+            "中指",
+            "看不见",
+            "无所谓",
+            "欢呼",
+            "无奈",
+            "害羞",
+            "想一想",
+            "鼓掌",
+            "观察",
+            "锁眉",
+            "黑线",
+            "汗",
+            "哭泣",
+            "阴暗",
+            "暗地观察",
+            "蜡烛",
+            "投降",
+            "吐血倒地",
+            "便便",
+            "长草",
+            "肿包",
+            "坐等",
+            "看热闹",
+            "深思",
+            "献花",
+            "献黄瓜",
+            "中枪",
+            "击掌",
+            "扇耳光",
+            "中刀"
         ]
     },
-    "QQ表情": {
-        "type": "image",
-        "container": [
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016bs.gif\">",
-                "text": "#BS"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_idea.gif\">",
-                "text": "#IDEA"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016tx.gif\">",
-                "text": "#TX"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_eek.gif\">",
-                "text": "#EEK"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_sad.gif\">",
-                "text": "#SAD"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016yun.gif\">",
-                "text": "#YUN"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016lengh.gif\">",
-                "text": "#NQH"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_redface.gif\">",
-                "text": "#redface"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_question.gif\">",
-                "text": "#question"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016db.gif\">",
-                "text": "#db"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_biggrin.gif\">",
-                "text": "#biggrin"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_confused.gif\">",
-                "text": "#confused"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016bb.gif\">",
-                "text": "#bb"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016gz.gif\">",
-                "text": "#qz"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_arrow.gif\">",
-                "text": "#arrow"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016kuk.gif\">",
-                "text": "#kuk"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016kel.gif\">",
-                "text": "#kel"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016kk.gif\">",
-                "text": "#kk"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_neutral.gif\">",
-                "text": "#neutral"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016zhh.gif\">",
-                "text": "#zhh"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_twisted.gif\">",
-                "text": "#twisted"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016am.gif\">",
-                "text": "#am"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_cool.gif\">",
-                "text": "#cool"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016ll.gif\">",
-                "text": "#ll"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016bz.gif\">",
-                "text": "#bz"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016zhem.gif\">",
-                "text": "#zhem"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_evil.gif\">",
-                "text": "#evil"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/icon_wink.gif\">",
-                "text": "#wink"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016ka.gif\">",
-                "text": "#ka"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016ch.gif\">",
-                "text": "#ch"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016kun.gif\">",
-                "text": "#kun"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016tp.gif\">",
-                "text": "#tp"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016jk.gif\">",
-                "text": "#jk"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/T/2016xia.gif\">",
-                "text": "#xai"
-            }
-        ]
-    },
-    "阿鲁": {
-        "type": "image",
-        "container": [
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E9AB98E585B4.png\">",
-                "text": "#高兴"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4B88DE9AB98E585B4.png\">",
-                "text": "#不高兴"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E79AB1E79C89.png\">",
-                "text": "#皱眉"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E982AAE681B6.png\">",
-                "text": "#邪恶"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5A4A7E59BA7.png\">",
-                "text": "#大囧"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E6838AE5969C.png\">",
-                "text": "#惊喜"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5B08FE79CBCE79D9B.png\">",
-                "text": "#小眼睛"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5B08FE68092.png\">",
-                "text": "#小怒"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E697A0E8AFAD.png\">",
-                "text": "#无语"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E582BBE7AC91.png\">",
-                "text": "#傻笑"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E69C9FE5BE85.png\">",
-                "text": "#期待"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E591B2E78999.png\">",
-                "text": "#呲牙"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5969CE69E81E8808CE6B3A3.png\">",
-                "text": "#喜极而泣"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E884B8E7BAA2.png\">",
-                "text": "#脸红"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4BAB2E4BAB2.png\">",
-                "text": "#亲亲"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E78B82E6B197.png\">",
-                "text": "#狂汗"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5BE97E6848F.png\">",
-                "text": "#得意"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E68AA0E9BCBB.png\">",
-                "text": "#抠鼻"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E68ABDE7839F.png\">",
-                "text": "#抽烟"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E58685E4BCA4.png\">",
-                "text": "#内伤"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E58FA3E6B0B4.png\">",
-                "text": "#口水"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E59090.png\">",
-                "text": "#吐"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E59090E8888C.png\">",
-                "text": "#吐舌"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4B88DE8AFB4E8AF9D.png\">",
-                "text": "#不说话"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4B88DE587BAE68980E69699.png\">",
-                "text": "#不出所料"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E8A385E5A4A7E6ACBE.png\">",
-                "text": "#装大款"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5B0B4E5B0AC.png\">",
-                "text": "#尴尬"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E596B7E6B0B4.png\">",
-                "text": "#喷水"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E596B7E8A180.png\">",
-                "text": "#喷血"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E592BDE6B094.png\">",
-                "text": "#咽气"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E684A4E68092.png\">",
-                "text": "#愤怒"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E8B59EE4B880E4B8AA.png\">",
-                "text": "#赞一个"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4B8ADE68C87.png\">",
-                "text": "#中指"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E79C8BE4B88DE8A781.png\">",
-                "text": "#看不见"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E697A0E68980E8B093.png\">",
-                "text": "#无所谓"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E6ACA2E591BC.png\">",
-                "text": "#欢呼"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E697A0E5A588.png\">",
-                "text": "#无奈"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E5AEB3E7BE9E.png\">",
-                "text": "#害羞"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E683B3E4B880E683B3.png\">",
-                "text": "#想一想"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E9BC93E68E8C.png\">",
-                "text": "#鼓掌"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E8A782E5AF9F.png\">",
-                "text": "#观察"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E99481E79C89.png\">",
-                "text": "#锁眉"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E9BB91E7BABF.png\">",
-                "text": "#黑线"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E6B197.png\">",
-                "text": "#汗"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E593ADE6B3A3.png\">",
-                "text": "#哭泣"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E998B4E69A97.png\">",
-                "text": "#阴暗"
-            },
-			            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E69A97E59CB0E8A782E5AF9F.png\">",
-                "text": "#暗地观察"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E89CA1E7839B.png\">",
-                "text": "#蜡烛"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E68A95E9998D.png\">",
-                "text": "#投降"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E59090E8A180E58092E59CB0.png\">",
-                "text": "#吐血倒地"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4BEBFE4BEBF.png\">",
-                "text": "#便便"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E995BFE88D89.png\">",
-                "text": "#长草"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E882BFE58C85.png\">",
-                "text": "#肿包"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E59D90E7AD89.png\">",
-                "text": "#坐等"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E79C8BE783ADE997B9.png\">",
-                "text": "#看热闹"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E6B7B1E6809D.png\">",
-                "text": "#深思"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E78CAEE88AB1.png\">",
-                "text": "#献花"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E78CAEE9BB84E7939C.png\">",
-                "text": "#献黄瓜"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4B8ADE69EAA.png\">",
-                "text": "#中枪"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E587BBE68E8C.png\">",
-                "text": "#击掌"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E68987E880B3E58589.png\">",
-                "text": "#扇耳光"
-            },
-            {
-                "icon": "<img src=\"https://o0o.fun/i/A/E4B8ADE58880.png\">",
-                "text": "#中刀"
-            }
-        ]
+   "QQ表情": {
+	"type": "emoticon",
+	"container": [
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016bs.gif\">",
+				"text": "::BS::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_idea.gif\">",
+				"text": "::IDEA::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016tx.gif\">",
+				"text": "::TX::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_eek.gif\">",
+				"text": "::EEK::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_sad.gif\">",
+				"text": "::SAD::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016yun.gif\">",
+				"text": "::YUN::"
+			},
+						{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016lengh.gif\">",
+				"text": "::NQH::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_redface.gif\">",
+				"text": "::redface::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_question.gif\">",
+				"text": "::question::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016db.gif\">",
+				"text": "::db::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_biggrin.gif\">",
+				"text": "::biggrin::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_confused.gif\">",
+				"text": "::confused::"
+			},
+						{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016bb.gif\">",
+				"text": "::bb::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016gz.gif\">",
+				"text": "::qz::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_arrow.gif\">",
+				"text": "::arrow::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016kuk.gif\">",
+				"text": "::kuk::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016kel.gif\">",
+				"text": "::kel::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016kk.gif\">",
+				"text": "::kk::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_neutral.gif\">",
+				"text": "::neutral"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016zhh.gif\">",
+				"text": "::zhh::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_twisted.gif\">",
+				"text": "::twisted::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016am.gif\">",
+				"text": "::am::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_cool.gif\">",
+				"text": "::cool::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016ll.gif\">",
+				"text": "::ll::"
+			},
+						{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016bz.gif\">",
+				"text": "::bz::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016zhem.gif\">",
+				"text": "::zhem::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_evil.gif\">",
+				"text": "::evil::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/icon_wink.gif\">",
+				"text": "::wink::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016ka.gif\">",
+				"text": "::ka::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016ch.gif\">",
+				"text": "::ch::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016kun.gif\">",
+				"text": "::kun::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016tp.gif\">",
+				"text": "::tp::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016jk.gif\">",
+				"text": "::jk::"
+			},
+			{
+				"icon": "<img src=\"https://o0o.fun/i/T/2016xia.gif\">",
+				"text": "::xai::"
+			}
+		]
+	},
+	"颜文字": {
+		"type": "emoticon",
+		"container": [
+		  {
+			"icon": "OωO",
+			"text": "Author: DIYgod"
+		  },
+		  {
+			"icon": "|´・ω・)ノ",
+			"text": "Hi"
+		  },
+		  {
+			"icon": "ヾ(≧∇≦*)ゝ",
+			"text": "开心"
+		  },
+		  {
+			"icon": "(☆ω☆)",
+			"text": "星星眼"
+		  },
+		  {
+			"icon": "（╯‵□′）╯︵┴─┴",
+			"text": "掀桌"
+		  },
+		  {
+			"icon": "￣﹃￣",
+			"text": "流口水"
+		  },
+		  {
+			"icon": "(/ω＼)",
+			"text": "捂脸"
+		  },
+		  {
+			"icon": "∠( ᐛ 」∠)＿",
+			"text": "给跪"
+		  },
+		  {
+			"icon": "(๑•̀ㅁ•́ฅ)",
+			"text": "Hi"
+		  },
+		  {
+			"icon": "→_→",
+			"text": "斜眼"
+		  },
+		  {
+			"icon": "୧(๑•̀⌄•́๑)૭",
+			"text": "加油"
+		  },
+		  {
+			"icon": "٩(ˊᗜˋ*)و",
+			"text": "有木有WiFi"
+		  },
+		  {
+			"icon": "(ノ°ο°)ノ",
+			"text": "前方高能预警"
+		  },
+		  {
+			"icon": "(´இ皿இ｀)",
+			"text": "我从未见过如此厚颜无耻之人"
+		  },
+		  {
+			"icon": "⌇●﹏●⌇",
+			"text": "吓死宝宝惹"
+		  },
+		  {
+			"icon": "(ฅ´ω`ฅ)",
+			"text": "已阅留爪"
+		  },
+		  {
+			"icon": "(╯°A°)╯︵○○○",
+			"text": "去吧大师球"
+		  },
+		  {
+			"icon": "φ(￣∇￣o)",
+			"text": "太萌惹"
+		  },
+		  {
+			"icon": "ヾ(´･ ･｀｡)ノ\"",
+			"text": "咦咦咦"
+		  },
+		  {
+			"icon": "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃",
+			"text": "气呼呼"
+		  },
+		  {
+			"icon": "(ó﹏ò｡)",
+			"text": "我受到了惊吓"
+		  },
+		  {
+			"icon": "Σ(っ °Д °;)っ",
+			"text": "什么鬼"
+		  },
+		  {
+			"icon": "( ,,´･ω･)ﾉ\"(´っω･｀｡)",
+			"text": "摸摸头"
+		  },
+		  {
+			"icon": "╮(╯▽╰)╭ ",
+			"text": "无奈"
+		  },
+		  {
+			"icon": "o(*////▽////*)q ",
+			"text": "脸红"
+		  },
+		  {
+			"icon": "＞﹏＜",
+			"text": ""
+		  },
+		  {
+			"icon": "( ๑´•ω•) \"(ㆆᴗㆆ)",
+			"text": ""
+		  },
+		  {
+			"icon": "(｡•ˇ‸ˇ•｡)",
+			"text": ""
+		  }
+		]
     }
 }

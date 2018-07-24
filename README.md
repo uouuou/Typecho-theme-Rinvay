@@ -15,6 +15,12 @@ https://github.com/uouuou/Typecho-theme-Rinvay
 https://www.rinvay.cc
 
 ## 主题亮点
+#### 2018/07/24
+ - 更新支持多种表情格式，原生`OwO`回复或者使用自定义格式前端渲染输出也可以选择`img`标签输出。
+ - 修复一些样式错误。
+ - 更新个站API功能。
+ - 全新贴吧表情。
+ - 全面修复InstantClick兼容性，所有现有功能全面兼容。
 #### 2018/07/20
  - 更新个站API支持InstantClick。
  - 更新主题支持表情回复，使用[OwO](https://github.com/DIYgod/OwO "OwO")支持。

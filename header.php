@@ -10,7 +10,7 @@
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<script src="<?php $this->options->themeUrl('js/OwO.min.js?v20180718'); ?>"></script>
 	<?php if ($this->options->pjaxSet == 'able'): ?>
-	<script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20180720'); ?>" data-no-instant></script>
+	<script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20180705'); ?>" data-no-instant></script>
 	<?php endif; ?>
 	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/OwO.min.css?v20180718'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
