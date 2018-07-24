@@ -31,7 +31,7 @@
                         <?php endif; ?>
                     </a>
 					<div class="info-text">	
-                    	<p>Theme is <a href="https://www.rinvay.cc" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
+                    	<p>Theme is <a href="https://www.rinvay.cc/archives/225/" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
 						<p>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a></p>
 						<p><?php getBuildTime(); ?></p>
 						<p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
