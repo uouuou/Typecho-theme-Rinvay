@@ -82,6 +82,7 @@ $this->need('header.php');
 		//$('.site-friend-link-storeweb').attr('href',information['storeweb']);
 	}
 </script>
+
 <?php endif; ?>
 <style>.content ul {
     font-size:0;
@@ -110,15 +111,15 @@ $str = preg_replace('#<li><p>(.*?)</p></li>#',
 
 $str = preg_replace('#<li><img src="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)><a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$6$7" target="_blank" >
         <div class="rinvay-links">
-            <img class="rinvay"
-	src="$1$2"$4>
+            <img class="b-lazy"
+	src="http://172.30.100.212:222/usr/themes/rinvay/images/load.gif"  data-src="$1$2"$4>
             <p>$10</p>
         </div>
     </a>',$str);
 
 $str = preg_replace('#<li>([1-9][0-9]{4,})<a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$3$4" target="_blank">
-        <div class="rinvay-links"><img class="rinvay"
-	src="//q.qlogo.cn/g?b=qq&nk=$1&s=100">
+        <div class="rinvay-links"><img class="b-lazy b-loaded"
+	src="https://q.qlogo.cn/g?b=qq&nk=$1&s=100">
             <p>$7</p>
         </div>
     </a>',$str);
@@ -135,6 +136,12 @@ $str = preg_replace('#<li><a href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></l
 </div>
 </div>
 
+<script type="text/javascript">
+    (function(){
+        //初始化
+        var blazy = new Blazy();
+    })();
+</script>
 
 
 </article>

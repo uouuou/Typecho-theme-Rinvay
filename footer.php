@@ -409,7 +409,11 @@ InstantClick.on('change', function(isInitialLoad){
     <?php endif; ?>
 		if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
     }
-	loadMeting(); // <-- reload Meting.JS
+	//loadMeting(); // <-- reload Meting.JS
+    (function() { 
+        var bLazy = new Blazy();
+    }
+    )();   
 	$(document).ready(function(){
 		if (document.getElementsByName('text')[0] == null)
 		{

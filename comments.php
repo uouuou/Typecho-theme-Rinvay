@@ -51,7 +51,36 @@ $comments->alt(' comment-odd', ' comment-even');
                 <span class="comment-author<?php echo $commentClass; ?>"><?php echo $author; ?></span>
             </div>
             <div class="comment-content">
-                <span class="comment-author-at"><?php getCommentAt($comments->coid); ?></span> <?php $comments->content(); ?></p>
+                <span class="comment-author-at"><?php getCommentAt($comments->coid); ?></span>
+                <?php
+                    $ms =  $comments->content;
+                    $urlreg = '/[A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+/u'; 
+                    $arureg = '/#\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';  
+                    $paopaoreg = '/@\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';
+                    $paopao = gethosturl().'/usr/themes/Rinvay/images/biaoqing/paopao/';
+                    $aru = gethosturl().'/usr/themes/Rinvay/images/biaoqing/aru/';
+                    $paopaoid = preg_match ( $paopaoreg , $ms , $namep );
+                    $aruid = preg_match ( $arureg , $ms , $namea );
+                    if ($paopaoid == 1){
+                        list($a[0]) = $namep;
+                        $names = preg_match ( $urlreg , $a[0] , $hex );
+                        $namehex = strtoupper(bin2hex($hex[0]));
+                        $imgurl = '<img  src="'.$paopao.$namehex.'_2x.png'.'" >';
+                        $content = preg_replace($paopaoreg,$imgurl,$ms);
+                    }elseif ($paopaoid == 0) {
+                        $content = $ms;
+                    }
+                    if ($aruid == 1) {
+                        list($b[0]) = $namea;
+                        $name = preg_match ( $urlreg , $b[0] , $hexs );
+                        $namehexs = strtoupper(bin2hex($hexs[0]));
+                        $imgurl = '<img  src="'.$aru.$namehexs.'_2x.png'.'" >';
+                        $content = preg_replace($arureg,$imgurl,$content);
+                        echo $content;
+                    }elseif ($aruid == 0) {
+                        echo $content;
+                    }                        
+                ?></p>
             </div>
             <div class="comment-meta">
                 <time class="comment-time"><?php $comments->date('M j, Y'); ?></time>
@@ -104,66 +133,32 @@ $comments->alt(' comment-odd', ' comment-even');
         <?php endif; ?>
     </div>
 </div>
-
-<script src="<?php $this->options->themeUrl('js/converter.min.js?v20180724'); ?>"></script>
-<script>
-	$(function(){
-		var len = $('.comment-content p').length;	
-		$.getJSON("<?php $this->options->themeUrl('js/OwwO.json?v20180724'); ?>", function (data){
-			for(var i in data.paopao.container){
-				for(var l = 0; l < len ; l ++) {
-					var _p = $('.comment-content p').eq(l).html();
-					let emjio = data.paopao.container[i];
-					//console.log(emjio);
-					//console.log(emjio);						
-						var reg=/@\([A-Za-z0-9_\-\u4e00-\u9fa5]+\)/g;
-						var base = encode(emjio, "base16").toUpperCase();
-						var url = "<?php $this->options->themeUrl('images/biaoqing/paopao/'); ?>"+base+".png";
-						//console.log(url);
-						var _pe = "<img src="+url+">";
-						//onsole.log(_pe);
-						_p=_p.replace(reg,function(a,b){
-							return emjio[a]; 
-						})
-						//console.log(_p);
-						$('.comment-content p').eq(l).html(_p)
-				}
-			}
-			for(var i in data.aru.container){
-				for(var l = 0; l < len ; l ++) {
-					var _p = $('.comment-content p').eq(l).html();
-					let emjio = data.aru.container[i];
-						var reg=/#\([A-Za-z0-9_\-\u4e00-\u9fa5]+\)/g;
-						var base = encode(emjio, "base16").toUpperCase();
-						var url = "<?php $this->options->themeUrl('images/biaoqing/aru/'); ?>"+base+".png";
-						//console.log(url);
-						var _pe = "<img src="+url+">";
-						//console.log(_pe);
-						_p=_p.replace(reg,function(a,b){
-							return emjio[a]; 
-						})
-						//console.log(_p);
-						$('.comment-content p').eq(l).html(_p)
-				}
-			}				
-		})
-		console.log("emjio ok!");
-	})	
-</script>
-
 <?php if ($this->options->pjaxSet == 'disable'): ?>
 <!--OωO表情-->
 <script data-no-instant>
-	// console.log(OwO);
-	var owo = new OwO({		
-			logo: 'OωO',
-			container: document.getElementsByClassName('OwO')[0],
-			target: document.getElementsByName('text')[0],
-			api: '<?php $this->options->themeUrl('js/OwO.json?v20180718'); ?>',
-			position: 'down',
-			width: '100%;',
-			maxHeight: '250px'
-	});
+    $(document).ready(function(){
+        if (document.getElementsByName('text')[0] == null)
+        {
+            console.log('OωO boom!');
+            return;
+        }else{
+            console.log('OωO ok!');
+            window['LocalConst'] = {
+                BIAOQING_PAOPAO_PATH: '<?php $this->options->themeUrl('images/biaoqing/paopao/'); ?>',
+                BIAOQING_ARU_PATH: '<?php $this->options->themeUrl('images/biaoqing/aru/'); ?>',
+            };
+            var owo = new OwO({     
+                logo: 'OωO',
+                container: document.getElementsByClassName('OwO')[0],
+                target: document.getElementsByName('text')[0],
+                api: '<?php $this->options->themeUrl('js/OwO.json?v20180718'); ?>',
+                position: 'down',
+                width: '100%;',
+                maxHeight: '250px'
+            });
+        }
+        
+    });
 </script>
 <?php endif; ?>
 

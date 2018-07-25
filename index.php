@@ -4,7 +4,7 @@
  *
  * @package Rinvay Theme
  * @author Rinvay
- * @version 2.0.1
+ * @version 2.0.2
  *@link https://www.rinvay.cc/
  */
 

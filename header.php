@@ -9,6 +9,7 @@
     <link rel="dns-prefetch" href="//secure.gravatar.com" /><?php endif; ?>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<script src="<?php $this->options->themeUrl('js/OwO.min.js?v20180718'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('js/blazy.js?v20180725'); ?>"></script>
 	<?php if ($this->options->pjaxSet == 'able'): ?>
 	<script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20180705'); ?>" data-no-instant></script>
 	<?php endif; ?>
@@ -32,16 +33,6 @@
     <link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/emojify.js/1.1.0/css/basic/emojify.min.css" rel="stylesheet">
     <link href="<?php $this->options->themeUrl('css/style.min.css?20180619'); ?>" rel="stylesheet">	
-	<!--[百度统计]-->
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-			  var hm = document.createElement("script");
-			  hm.src = "https://hm.baidu.com/hm.js?e1ef4971fb8dd58f8e32a57a9ecb0382";
-			  var s = document.getElementsByTagName("script")[0]; 
-			  s.parentNode.insertBefore(hm, s);
-		})();
-	</script>
     <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
