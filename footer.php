@@ -1,28 +1,28 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <footer id="footer" class="footer <?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-grey<?php elseif($this->is('single')): ?>bg-white<?php endif; ?>">
-	<div class="footer-social">
-		<div class="footer-container clearfix">
-			<div class="social-list">
-			<?php if ($this->options->socialweibo): ?>
-				<a class="social weibo" target="blank" href="<?php $this->options->socialweibo(); ?>">WEIBO</a>
-			<?php endif; ?>
+    <div class="footer-social">
+        <div class="footer-container clearfix">
+            <div class="social-list">
+            <?php if ($this->options->socialweibo): ?>
+                <a class="social weibo" target="blank" href="<?php $this->options->socialweibo(); ?>">WEIBO</a>
+            <?php endif; ?>
             <?php if ($this->options->socialzhihu): ?>
                 <a class="social zhihu" target="blank" href="<?php $this->options->socialzhihu(); ?>">ZHIHU</a>
             <?php endif; ?>
                 <a class="social rss" target="blank" href="<?php $this->options->siteUrl(); ?>feed/">RSS</a>
-			<?php if ($this->options->socialgithub): ?>
-				<a class="social github" target="blank" href="<?php $this->options->socialgithub(); ?>">GITHUB</a>
-			<?php endif; ?>
-			<?php if ($this->options->socialtwitter): ?>
-				<a class="social twitter" target="blank" href="<?php $this->options->socialtwitter(); ?>">TWITTER</a>
-			<?php endif; ?>
-			</div>
-		</div>
-	</div>
-	<div class="footer-meta">
-		<div class="footer-container">
-			<div class="meta-item meta-copyright">
-				<div class="meta-copyright-info">
+            <?php if ($this->options->socialgithub): ?>
+                <a class="social github" target="blank" href="<?php $this->options->socialgithub(); ?>">GITHUB</a>
+            <?php endif; ?>
+            <?php if ($this->options->socialtwitter): ?>
+                <a class="social twitter" target="blank" href="<?php $this->options->socialtwitter(); ?>">TWITTER</a>
+            <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
                     <a href="<?php $this->options->siteUrl(); ?>" class="info-logo">
                         <?php if($this->options->footerLogoUrl): ?>
                         <img src="<?php $this->options->footerLogoUrl();?>" alt="<?php $this->options->title() ?>" />
@@ -30,19 +30,19 @@
                         <?php $this->options->title() ?>
                         <?php endif; ?>
                     </a>
-					<div class="info-text">	
-                    	<p>Theme is <a href="https://www.rinvay.cc/archives/225/" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
-						<p>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a></p>
-						<p><?php getBuildTime(); ?></p>
-						<p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
-						<p id="binft"></p>
-					</div>
-				</div>
-			</div>
-			<div class="meta-item meta-posts">
-				<h3 class="meta-title">RECENT POSTS</h3>
+                    <div class="info-text"> 
+                        <p>Theme is <a href="https://www.rinvay.cc/archives/225/" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
+                        <p>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a></p>
+                        <p><?php getBuildTime(); ?></p>
+                        <p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
+                        <p id="binft"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">RECENT POSTS</h3>
                 <?php getRecentPosts($this,8); ?>
-			</div>
+            </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">RECENT COMMENTS</h3>
                 <?php $this->widget('Widget_Comments_Recent','pageSize=8')->to($comments); ?>
@@ -50,8 +50,8 @@
                 <li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?> : <?php $comments->excerpt(25, '...'); ?></a></li>
                 <?php endwhile; ?>
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
 </footer>
 
 <?php if ($this->options->pjaxSet == 'disable'): ?>
@@ -61,23 +61,23 @@
 <script>
 console.log('pjax ok!');
 $(document).pjax('a[href^="<?php Helper::options()->siteUrl()?>"]:not(a[target="_blank"], a[no-pjax])', {
-	container: '#leus',
-	//fragment: '#leus',
-	timeout: 8000
-	}).on('pjax:send', function() {
-		NProgress.start();
-		console.log( 'pjax start' );
-	}).on('pjax:complete', function() {
-		loadMeting();
-		<?php if ($this->options->useHighline == 'able'): ?>
-		var blocks = document.querySelectorAll('pre code');
-		for (var i = 0; i < blocks.length; i++) {
-			hljs.highlightBlock(blocks[i]);
-		}
-		<?php endif; ?>
-		NProgress.done();
-		console.log( 'pjax end' );
-	});
+    container: '#leus',
+    //fragment: '#leus',
+    timeout: 8000
+    }).on('pjax:send', function() {
+        NProgress.start();
+        console.log( 'pjax start' );
+    }).on('pjax:complete', function() {
+        loadMeting();
+        <?php if ($this->options->useHighline == 'able'): ?>
+        var blocks = document.querySelectorAll('pre code');
+        for (var i = 0; i < blocks.length; i++) {
+            hljs.highlightBlock(blocks[i]);
+        }
+        <?php endif; ?>
+        NProgress.done();
+        console.log( 'pjax end' );
+    });
 </script>
  <?php endif; ?>
 <!--底部彩色文字-->
@@ -407,112 +407,112 @@ InstantClick.on('change', function(isInitialLoad){
     <?php if($this->options->useMathjax == 'able'): ?>
         if (typeof MathJax !== 'undefined'){MathJax.Hub.Queue(["Typeset",MathJax.Hub]);}
     <?php endif; ?>
-		if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
+        if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
     }
-	//loadMeting(); // <-- reload Meting.JS
-    (function() { 
-        var bLazy = new Blazy();
+    //loadMeting(); // <-- reload Meting.JS
+    $(document).ready(function(){
+        //初始化
+        var blazy = new Blazy();
+    });  
+    $(document).ready(function(){
+        if (document.getElementsByName('text')[0] == null)
+        {
+            console.log('OωO boom!');
+            return;
+        }else{
+            console.log('OωO ok!');
+            window['LocalConst'] = {
+                BIAOQING_PAOPAO_PATH: '<?php $this->options->themeUrl('images/biaoqing/paopao/'); ?>',
+                BIAOQING_ARU_PATH: '<?php $this->options->themeUrl('images/biaoqing/aru/'); ?>',
+            };
+            //console.log(document.getElementsByName('text')[0]);
+            var owo = new OwO({     
+                logo: 'OωO',
+                container: document.getElementsByClassName('OwO')[0],
+                target: document.getElementsByName('text')[0],
+                api: '<?php $this->options->themeUrl('js/OwO.json?v20180718'); ?>',
+                position: 'down',
+                width: '100%;',
+                maxHeight: '250px'
+            });
+        }
+        
+    }); // <-- 引入表情
+    if (document.getElementsByName('rinvaylinks')[0] == null){
+        console.log('Links api boom!');
+    }else{
+        console.log('Links api ok!');
+        <?php if ($this->options->links == 'able'): ?>
+        var url = "https://storeweb.cn/api/friend_link";
+        <?php endif; ?>
+        <?php if ($this->options->links == 'disable'): ?>
+        var url = "https://oo.o0o.fun/api/friend_link";
+        <?php endif; ?>
+        var logo_size = 2;
+        function get_friend_link_api(timeout) {
+            $.ajax({
+                type: 'get',
+                url: url,
+                async: true,
+                dataType: 'jsonp',
+                data: {
+                    size: logo_size
+                },          
+                timeout : 3000,
+                success: function (success) {
+                    if (success['success'] == 1) {
+                        //console.log(success['data']);
+                        template_make(success['data']);
+                        set_storeweb_info(success['information']);
+                    } else {
+                        $('.site-friend-link').html(success['info']);
+                    }
+                },
+                complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+                    if(status=='timeout'){//超时,status还有success,error等值的情况
+                        if(timeout==1){
+                            $('.site-friend-link').html('获取数据超时……请联系个站商店小彦');
+                        }else {
+                            var url = "https://cc.rinvay.cc/api/friend_link";
+                            $('.site-friend-link').html('https 获取数据超时……尝试http获取……');
+                            get_friend_link_api(1);
+                        }
+                    }
+                }
+            });
+        }
+        $(function () {
+            $('.site-friend-link').html('正在向『个站商店』请求友链数据……');
+            get_friend_link_api(0);
+        })
+        function template_make(data) {
+            
+            //console.log(data)
+            $('.site-friend-link').html('');
+            $.each(data, function (key, value) {
+                //console.log(value.name);
+                var template = $('#links-template').text();
+                template = template.replace('%%name%%', value.name);
+                template = template.replace('%%logo_cn%%', value.logo_cn);
+                template = template.replace('%%intro_link%%', value.intro_link);
+                template = template.replace('%%domain%%', 'http://' + value.domain);
+                template = template.replace('%%update_count%%', value.update_count);
+                if (value.update_count == 0) {
+                    template = template.replace('%%update_hide%%', 'hide');
+                } else {
+                    template = template.replace('%%update_hide%%','F');
+                }
+                var template_id = $(template);
+                $('.contents').prepend(template_id);
+            })
+        }
+        function set_storeweb_info(information){
+            $('.site-friend-link-homepage').attr('href',information['homepage']);
+            $('.site-friend-link-project').attr('href',information['project']);
+            //$('.site-friend-link-storeweb').attr('href',information['storeweb']);
+        }
     }
-    )();   
-	$(document).ready(function(){
-		if (document.getElementsByName('text')[0] == null)
-		{
-			console.log('OωO boom!');
-			return;
-		}else{
-			console.log('OωO ok!');
-			window['LocalConst'] = {
-				BIAOQING_PAOPAO_PATH: '<?php $this->options->themeUrl('images/biaoqing/paopao/'); ?>',
-				BIAOQING_ARU_PATH: '<?php $this->options->themeUrl('images/biaoqing/aru/'); ?>',
-			};
-			//console.log(document.getElementsByName('text')[0]);
-			var owo = new OwO({		
-				logo: 'OωO',
-				container: document.getElementsByClassName('OwO')[0],
-				target: document.getElementsByName('text')[0],
-				api: '<?php $this->options->themeUrl('js/OwO.json?v20180718'); ?>',
-				position: 'down',
-				width: '100%;',
-				maxHeight: '250px'
-			});
-		}
-		
-	});	// <-- 引入表情
-	if (document.getElementsByName('rinvaylinks')[0] == null){
-		console.log('Links api boom!');
-	}else{
-		console.log('Links api ok!');
-		<?php if ($this->options->links == 'able'): ?>
-		var url = "https://storeweb.cn/api/friend_link";
-		<?php endif; ?>
-		<?php if ($this->options->links == 'disable'): ?>
-		var url = "https://oo.o0o.fun/api/friend_link";
-		<?php endif; ?>
-		var logo_size = 2;
-		function get_friend_link_api(timeout) {
-			$.ajax({
-				type: 'get',
-				url: url,
-				async: true,
-				dataType: 'jsonp',
-				data: {
-					size: logo_size
-				},			
-				timeout : 3000,
-				success: function (success) {
-					if (success['success'] == 1) {
-						//console.log(success['data']);
-						template_make(success['data']);
-						set_storeweb_info(success['information']);
-					} else {
-						$('.site-friend-link').html(success['info']);
-					}
-				},
-				complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
-					if(status=='timeout'){//超时,status还有success,error等值的情况
-						if(timeout==1){
-							$('.site-friend-link').html('获取数据超时……请联系个站商店小彦');
-						}else {
-							var url = "https://cc.rinvay.cc/api/friend_link";
-							$('.site-friend-link').html('https 获取数据超时……尝试http获取……');
-							get_friend_link_api(1);
-						}
-					}
-				}
-			});
-		}
-		$(function () {
-			$('.site-friend-link').html('正在向『个站商店』请求友链数据……');
-			get_friend_link_api(0);
-		})
-		function template_make(data) {
-			
-			//console.log(data)
-			$('.site-friend-link').html('');
-			$.each(data, function (key, value) {
-				//console.log(value.name);
-				var template = $('#links-template').text();
-				template = template.replace('%%name%%', value.name);
-				template = template.replace('%%logo_cn%%', value.logo_cn);
-				template = template.replace('%%intro_link%%', value.intro_link);
-				template = template.replace('%%domain%%', 'http://' + value.domain);
-				template = template.replace('%%update_count%%', value.update_count);
-				if (value.update_count == 0) {
-					template = template.replace('%%update_hide%%', 'hide');
-				} else {
-					template = template.replace('%%update_hide%%','F');
-				}
-				var template_id = $(template);
-				$('.contents').prepend(template_id);
-			})
-		}
-		function set_storeweb_info(information){
-			$('.site-friend-link-homepage').attr('href',information['homepage']);
-			$('.site-friend-link-project').attr('href',information['project']);
-			//$('.site-friend-link-storeweb').attr('href',information['storeweb']);
-		}
-	}
-	
+    
 });
 InstantClick.init('mousedown');
 </script>

@@ -112,7 +112,7 @@ $str = preg_replace('#<li><p>(.*?)</p></li>#',
 $str = preg_replace('#<li><img src="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)><a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$6$7" target="_blank" >
         <div class="rinvay-links">
             <img class="b-lazy"
-	src="http://172.30.100.212:222/usr/themes/rinvay/images/load.gif"  data-src="$1$2"$4>
+	src="https://lioil.cc/i/load.gif"  data-src="$1$2"$4>
             <p>$10</p>
         </div>
     </a>',$str);
