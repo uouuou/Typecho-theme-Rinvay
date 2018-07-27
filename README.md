@@ -1,4 +1,4 @@
-## Pinghsu Theme
+## Rinvay Theme
 
 ![](https://www.rinvay.cc/usr/themes/Rinvay/screenshot.jpg)
 
