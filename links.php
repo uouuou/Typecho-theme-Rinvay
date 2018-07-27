@@ -82,7 +82,12 @@ $this->need('header.php');
 		//$('.site-friend-link-storeweb').attr('href',information['storeweb']);
 	}
 </script>
-
+<script type="text/javascript" data-no-instant>
+    (function(){
+        //初始化
+        var blazy = new Blazy();
+    })();
+</script>
 <?php endif; ?>
 <style>.content ul {
     font-size:0;
@@ -135,15 +140,6 @@ $str = preg_replace('#<li><a href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></l
 
 </div>
 </div>
-
-<script type="text/javascript">
-    (function(){
-        //初始化
-        var blazy = new Blazy();
-    })();
-</script>
-
-
 </article>
 
 <?php $this->need('comments.php'); ?>

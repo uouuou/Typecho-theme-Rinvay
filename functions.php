@@ -177,7 +177,33 @@ function parseContent($obj){
         $obj->content = str_ireplace($options->src_add,$options->cdn_add,$obj->content);
     }
     $obj->content = preg_replace("/<a href=\"([^\"]*)\">/i", "<a href=\"\\1\" target=\"_blank\">", $obj->content);
-    echo trim($obj->content);
+    $ms = $obj->content;
+    $urlreg = '/[A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+/u'; 
+    $arureg = '/#\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';  
+    $paopaoreg = '/@\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';
+    $paopao = gethosturl().'/usr/themes/Rinvay/images/biaoqing/paopao/';
+    $aru = gethosturl().'/usr/themes/Rinvay/images/biaoqing/aru/';
+    $paopaoid = preg_match ( $paopaoreg , $ms , $namep );
+    $aruid = preg_match ( $arureg , $ms , $namea );
+    if ($paopaoid == 1){
+        list($a[0]) = $namep;
+        $names = preg_match ( $urlreg , $a[0] , $hex );
+        $namehex = strtoupper(bin2hex($hex[0]));
+        $imgurl = '<img class="rinvay" src="'.$paopao.$namehex.'_2x.png'.'" >';
+        $content = preg_replace($paopaoreg,$imgurl,$ms);
+    }elseif ($paopaoid == 0) {
+        $content = $ms;
+    }
+    if ($aruid == 1) {
+        list($b[0]) = $namea;
+        $name = preg_match ( $urlreg , $b[0] , $hexs );
+        $namehexs = strtoupper(bin2hex($hexs[0]));
+        $imgurl = '<img class="rinvay" src="'.$aru.$namehexs.'_2x.png'.'" >';
+        $content = preg_replace($arureg,$imgurl,$content);
+        echo $content;
+    }elseif ($aruid == 0) {
+        echo $content;
+    }                        
 }
 
 function getCommentAt($coid){
@@ -424,3 +450,9 @@ else
         return -1; 
     } 
 }
+
+function gethosturl(){
+    $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+    return $http_type . $_SERVER['HTTP_HOST'];
+}
+

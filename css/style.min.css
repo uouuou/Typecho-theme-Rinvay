@@ -1114,7 +1114,8 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 }
 .post-content p a:hover {
 	color:#eb5055;
-	border-bottom:1px solid #eb5055
+	border-bottom:1px solid	#display:block;
+ #eb5055
 }
 .post-content img {
 	position:relative;
@@ -1123,13 +1124,18 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	height:auto;
 	margin:0 auto
 }
+
 .post-content p img {
 	position:relative;
-	#display:block;
 	overflow:hidden;
 	max-width:100%;
 	height:auto;
 	margin:auto
+}
+
+.post-content p img.rinvay  {
+    height: 30px;
+    top: 5px;
 }
 .post-content input.text {
 	display:inline-block;
