@@ -1137,6 +1137,10 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
     height: 30px;
     top: 5px;
 }
+.post-content li img.rinvay  {
+    height: 30px;
+    top: 5px;
+}
 .post-content input.text {
 	display:inline-block;
 	padding:5px 10px;
