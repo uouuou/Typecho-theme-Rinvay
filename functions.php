@@ -198,7 +198,7 @@ function parseContent($obj){
      for ($l=0; $l < sizeof($bb); $l++) { 
         $names = preg_match ( $urlreg , $bb[$l] , $hex );
         $nameid = preg_match ( $arureg , $bb[$l] , $hexs );
-        $namehex = strtoupper(bin2hex($hex[0]));
+        $namehex = preg_replace('/%/u','',urlencode($hex[0]));
         $imgurl = '<img class="rinvay" src="'.$aru.$namehex.'_2x.png'.'" >';
         $ms = str_replace($hexs[0],$imgurl,$ms);
         $content = preg_replace($arureg,$imgurl,$ms);
