@@ -53,7 +53,6 @@ $comments->alt(' comment-odd', ' comment-even');
             <div class="comment-content">
                 <span class="comment-author-at"><?php getCommentAt($comments->coid); ?></span>
                 <?php
-                    error_reporting(E_ALL ^ E_NOTICE);
                     $ms =  $comments->content;
                     $urlreg = '/[A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+/u'; 
                     $arureg = '/#\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';  
