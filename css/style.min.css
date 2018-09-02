@@ -606,33 +606,33 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	padding:0 45px 0 10px;
 	cursor:pointer
 }
-.navbar-mobile-menu:active,.navbar-mobile-menu:hover {
+.navbar-mobile-menu:active,.navbar-mobile-menu-on {
 	cursor:pointer
 }
-.navbar-mobile-menu:active:before,.navbar-mobile-menu:hover:before {
+.navbar-mobile-menu:active:before,.navbar-mobile-menu-on:before {
 	-webkit-animation:pointer-ball .3s ease 1;
 	animation:pointer-ball .3s ease 1;
 	-webkit-animation-timing-function:cubic-bezier(.61,.04,.17,1.32);
 	animation-timing-function:cubic-bezier(.61,.04,.17,1.32)
 }
-.navbar-mobile-menu:active .icon-menu,.navbar-mobile-menu:hover .icon-menu {
+.navbar-mobile-menu:active .icon-menu,.navbar-mobile-menu-on .icon-menu {
 	-webkit-transform:rotateZ(360deg);
 	-ms-transform:rotateZ(360deg);
 	transform:rotateZ(360deg)
 }
-.navbar-mobile-menu:active .icon-menu.cross .middle,.navbar-mobile-menu:active .icon-menu.cross:after,.navbar-mobile-menu:active .icon-menu.cross:before,.navbar-mobile-menu:hover .icon-menu.cross .middle,.navbar-mobile-menu:hover .icon-menu.cross:after,.navbar-mobile-menu:hover .icon-menu.cross:before {
+.navbar-mobile-menu:active .icon-menu.cross .middle,.navbar-mobile-menu:active .icon-menu.cross:after,.navbar-mobile-menu:active .icon-menu.cross:before,.navbar-mobile-menu-on .icon-menu.cross .middle,.navbar-mobile-menu-on .icon-menu.cross:after,.navbar-mobile-menu-on .icon-menu.cross:before {
 	background:#eb5055
 }
-.navbar-mobile-menu:active .icon-menu.cross .middle,.navbar-mobile-menu:hover .icon-menu.cross .middle {
+.navbar-mobile-menu:active .icon-menu.cross .middle,.navbar-mobile-menu-on .icon-menu.cross .middle {
 	opacity:0
 }
-.navbar-mobile-menu:active .icon-menu.cross:after,.navbar-mobile-menu:hover .icon-menu.cross:after {
+.navbar-mobile-menu:active .icon-menu.cross:after,.navbar-mobile-menu-on .icon-menu.cross:after {
 	bottom:5px;
 	-webkit-transform:rotate(135deg);
 	-ms-transform:rotate(135deg);
 	transform:rotate(135deg)
 }
-.navbar-mobile-menu:active .icon-menu.cross:before,.navbar-mobile-menu:hover .icon-menu.cross:before {
+.navbar-mobile-menu:active .icon-menu.cross:before,.navbar-mobile-menu-on .icon-menu.cross:before {
 	top:5px;
 	-webkit-transform:rotate(45deg);
 	-ms-transform:rotate(45deg);
@@ -662,7 +662,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	transform:translate(120px,0);
 	text-indent:0
 }
-.navbar-mobile-menu:active>ul,.navbar-mobile-menu:focus>ul,.navbar-mobile-menu:hover>ul {
+.navbar-mobile-menu:active>ul,.navbar-mobile-menu:focus>ul,.navbar-mobile-menu-on ul {
 	overflow:inherit;
 	clip:inherit;
 	-webkit-transition:-webkit-transform .3s;
