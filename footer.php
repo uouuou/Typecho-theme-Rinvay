@@ -34,6 +34,9 @@
                         <p>Theme is <a href="https://www.rinvay.cc/archives/225/" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
                         <p>Powered by Typecho V1.2</p>
                         <p><?php getBuildTime(); ?></p>
+                        <?php if($this->options->beian): ?>
+                        <p><a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow"><?php $this->options->beian(); ?></a></p>
+                        <?php endif; ?>                       
                         <p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
                         <p>Loading time <?php echo timer_stop(); ?></p>
                         <p id="binft"></p>
@@ -46,7 +49,7 @@
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">RECENT COMMENTS</h3>
-                <?php $this->widget('Widget_Comments_Recent','pageSize=8')->to($comments); ?>
+                <?php $this->widget('Widget_Comments_Recent','pageSize=8&ignoreAuthor=true')->to($comments); ?>
                 <?php while($comments->next()): ?>
                 <li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?> : <?php $comments->excerpt(25, '...'); ?></a></li>
                 <?php endwhile; ?>

@@ -13,21 +13,25 @@ function themeConfig($form) {
 
     $searchPage = new Typecho_Widget_Helper_Form_Element_Text('searchPage', NULL, NULL, _t('搜索页地址'), _t('输入你的 Template Page of Search 的页面地址,记得带上 http:// 或 https://'));
     $form->addInput($searchPage->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
-	
+
+    $beian = new Typecho_Widget_Helper_Form_Element_Text('beian', NULL, NULL, _t('ICP备案号'), _t('例如：渝ICP备15004857号-1,留空则不设置ICP备案号'));
+    $form->addInput($beian->addRule('xssCheck', _t('请不要在ICP备案号中使用特殊字符')));
+
+    
     $emoji = new Typecho_Widget_Helper_Form_Element_Radio('emoji',
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
         ),
         'able', _t('启用 Emoji 表情'), _t('启用后可在编辑器里插入 Emoji 表情符号'));
-    $form->addInput($emoji);		
-		
+    $form->addInput($emoji);        
+        
     $links = new Typecho_Widget_Helper_Form_Element_Radio('links',
         array('able' => _t('个站官方'),
               'disable' => _t('Rinvay代理'),
         ),
         'able', _t('个站友链项目'), _t('选择个站友链API接口，若个站HTTPS接口不能使用可选择Rinvay代理接口'));
-    $form->addInput($links);	
-	
+    $form->addInput($links);    
+    
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
         array('able' => _t('InstantClick'),
             'disable' => _t('Pjax'),
@@ -125,8 +129,8 @@ function themeConfig($form) {
     $form->addInput($cdnAddress->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
     $default_thumb = new Typecho_Widget_Helper_Form_Element_Text('default_thumb', NULL, '', _t('默认缩略图'),_t('文章没有图片时的默认缩略图，留空则无，一般为http://www.yourblog.com/image.png'));
     $form->addInput($default_thumb->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
-	
-	
+    
+    
 }
 
 function themeInit($archive){
@@ -348,37 +352,37 @@ date_default_timezone_set('Asia/Shanghai');
  * @return html
  */
 function getBuildTime(){
-	// 在下面按格式输入本站创建的时间
-	$site_create_time = strtotime('2018-06-10 00:00:00');
-	$time = time() - $site_create_time;
-	if(is_numeric($time)){
-		$value = array(
-			"years" => 0, "days" => 0, "hours" => 0,
-			"minutes" => 0, "seconds" => 0,
-		);
-		// if($time >= 31556926){
-			// $value["years"] = floor($time/31556926);
-			// $time = ($time%31556926);
-		// }
-		if($time >= 86400){
-			$value["days"] = floor($time/86400);
-			$time = ($time%86400);
-		}
-		if($time >= 3600){
-			$value["hours"] = floor($time/3600);
-			$time = ($time%3600);
-		}
-		if($time >= 60){
-			$value["minutes"] = floor($time/60);
-			$time = ($time%60);
-		}
-		$value["seconds"] = floor($time);
-		
-		// echo '已运行'.$value['years'].'年'.$value['days'].'天'.$value['hours'].'小时'.$value['minutes'].'分';
-		echo 'Running '.$value['days'].'Day'.$value['hours'].'Hor'.$value['minutes'].'Min';
-	}else{
-		echo '';
-	}
+    // 在下面按格式输入本站创建的时间
+    $site_create_time = strtotime('2018-06-10 00:00:00');
+    $time = time() - $site_create_time;
+    if(is_numeric($time)){
+        $value = array(
+            "years" => 0, "days" => 0, "hours" => 0,
+            "minutes" => 0, "seconds" => 0,
+        );
+        // if($time >= 31556926){
+            // $value["years"] = floor($time/31556926);
+            // $time = ($time%31556926);
+        // }
+        if($time >= 86400){
+            $value["days"] = floor($time/86400);
+            $time = ($time%86400);
+        }
+        if($time >= 3600){
+            $value["hours"] = floor($time/3600);
+            $time = ($time%3600);
+        }
+        if($time >= 60){
+            $value["minutes"] = floor($time/60);
+            $time = ($time%60);
+        }
+        $value["seconds"] = floor($time);
+        
+        // echo '已运行'.$value['years'].'年'.$value['days'].'天'.$value['hours'].'小时'.$value['minutes'].'分';
+        echo 'Running '.$value['days'].'Day'.$value['hours'].'Hor'.$value['minutes'].'Min';
+    }else{
+        echo '';
+    }
 
 }
 

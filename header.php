@@ -7,13 +7,13 @@
     <link rel="dns-prefetch" href="<?php $this->options->cdn_add(); ?>" /><?php endif; ?>
     <link rel="dns-prefetch" href="//cdn.bootcss.com" />
     <link rel="dns-prefetch" href="//secure.gravatar.com" /><?php endif; ?>
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-	<script src="<?php $this->options->themeUrl('js/OwO.min.js?v20180718'); ?>"></script>
-	<script src="<?php $this->options->themeUrl('js/blazy.js?v20180725'); ?>"></script>
-	<?php if ($this->options->pjaxSet == 'able'): ?>
-	<script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20180705'); ?>" data-no-instant></script>
-	<?php endif; ?>
-	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/OwO.min.css?v20180718'); ?>">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<?php $this->options->themeUrl('js/OwO.min.js?v20180718'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('js/blazy.js?v20180725'); ?>"></script>
+    <?php if ($this->options->pjaxSet == 'able'): ?>
+    <script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20180705'); ?>" data-no-instant></script>
+    <?php endif; ?>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/OwO.min.css?v20180718'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -31,23 +31,23 @@
     <meta name="keywords" content="<?php $this->keywords(); ?>" />
     <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
     <link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/emojify.js/1.1.0/css/basic/emojify.min.css" rel="stylesheet">
-    <link href="<?php $this->options->themeUrl('css/style.min.css?20180619'); ?>" rel="stylesheet">	
-	<!--[百度统计]-->
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-			  var hm = document.createElement("script");
-			  hm.src = "https://hm.baidu.com/hm.js?e1ef4971fb8dd58f8e32a57a9ecb0382";
-			  var s = document.getElementsByTagName("script")[0]; 
-			  s.parentNode.insertBefore(hm, s);
-		})();
-	</script>
+    <link href="https://cdn.bootcss.com/emojify.js/1.1.0/css/basic/emojify.min.css" rel="stylesheet">
+    <link href="<?php $this->options->themeUrl('css/style.min.css?20180619'); ?>" rel="stylesheet"> 
+    <!--[百度统计]-->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?e1ef4971fb8dd58f8e32a57a9ecb0382";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<!--base target="_blank"/-->
+    <!--base target="_blank"/-->
 </head>
 <body class="<?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-white<?php elseif(!$this->is('single')): ?>bg-grey<?php endif; ?>" gtools_scp_screen_capture_injected="true">
 <!--[if lt IE 8]>
