@@ -2,6 +2,10 @@
 
 ![](https://www.rinvay.cc/usr/themes/Rinvay/screenshot.jpg)
 
+### 本项目 CDN 加速及安全防护由 Tencent EdgeOne 赞助
+[亚洲最佳CDN、边缘和安全解决方案 - Tencent EdgeOne](https://edgeone.ai/zh?from=github)
+![](https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png)
+
 **主题介绍**
 
 Rinvay是一款基于pinghsu主题的修改版，📰<a href="https://www.linpx.com/p/more-detailed-pinghsu-theme-set-tutorial.html/comment-page-7" target="_blank">pinghsu</a>,更新详见Github📰<a href="https://github.com/uouuou" target="_blank">Github</a>和我的Blog📰<a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a>
