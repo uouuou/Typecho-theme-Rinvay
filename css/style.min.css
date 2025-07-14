@@ -415,7 +415,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
     font-size:22px;
     line-height:22px;
     position:absolute;
-    top:50%;
+    top:45%;
     left:0;
     display:block;
     width:auto;
@@ -427,7 +427,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 }
 .navbar-logo img {
     width:auto;
-    height:22px;
+    height:30px;
     outline:0
 }
 .navbar-menu {
