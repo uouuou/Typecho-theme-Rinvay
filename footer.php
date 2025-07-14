@@ -59,9 +59,9 @@
 </footer>
 
 <?php if ($this->options->pjaxSet == 'disable'): ?>
-<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-<script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
-<link href="<?php $this->options->themeUrl('css/nprogress.min.css?v20180720'); ?>" rel="stylesheet">
+<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/nprogress/0.2.0/nprogress.min.js"></script>
+<link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
 <script>
 console.log('pjax ok!');
 $(document).pjax('a[href^="<?php Helper::options()->siteUrl()?>"]:not(a[target="_blank"], a[no-pjax])', {
@@ -134,6 +134,96 @@ binft(document.getElementById('binft'));
 <div id="directory-content" class="directory-content">
     <nav class="toc js-toc"></nav>
 </div>
+    <script>
+        var postDirectoryBuild = function() {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function(article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function(article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i] ;
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'),document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
 <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/tocbot/4.18.2/tocbot.min.js"></script>
 <?php endif; ?>
 <?php if(($this->is('single')) && ($this->allow('comment'))): ?>
@@ -215,12 +305,12 @@ addCommentInputValue();
 </script>
 <?php endif; ?>
 <?php $this->footer(); ?>
-    <script src="https://cdn.bootcss.com/emojify.js/1.1.0/js/emojify.min.js"></script>
-    <script src="<?php $this->options->themeUrl('js/twemoji.js?v20180705'); ?>"></script>
-    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/headroom/0.12.0/headroom.min.js"></script>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/emojify.js/1.1.0/js/emojify.min.js"></script>
+<script src="<?php $this->options->themeUrl('js/twemoji.js?v20250714'); ?>"></script>
+<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/headroom/0.12.0/headroom.min.js"></script>
 <?php if ($this->options->useHighline == 'able'): ?>
 <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/autohotkey.min.js"></script>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/languages/autohotkey.min.js"></script>
 <?php endif; ?>
 <?php if ($this->options->pjaxSet == 'able'): ?>
 <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/instantclick/3.1.0/instantclick.min.js"></script>
@@ -310,7 +400,7 @@ MathJax.Hub.Config({
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/2.7.9/MathJax.min.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <?php endif; ?>
 <?php if($this->options->GoogleAnalytics): ?>
 <?php $this->options->GoogleAnalytics(); ?>
@@ -451,7 +541,7 @@ InstantClick.init('mousedown');
 <?php if ($this->options->emoji == 'able'): ?>
 <script type="text/javascript">
     emojify.setConfig({
-        img_dir: "//cdn.bootcss.com/emojify.js/1.1.0/images/basic",
+        img_dir: "//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/emojify.js/1.1.0/images/basic",
         blacklist: {
             'ids': [],
             'classes': ['no-emojify'],

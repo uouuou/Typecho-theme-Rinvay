@@ -32,10 +32,10 @@
     <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
     <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/xcode.min.css" rel="stylesheet">
     <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/emojify.js/1.1.0/css/data-uri/emojify.min.css" rel="stylesheet">
-    <link href="<?php $this->options->themeUrl('style.min.css?v20250714'); ?>" rel="stylesheet">
+    <link href="<?php $this->options->themeUrl('css/style.min.css?v2025071401'); ?>" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="<?php if (isset($this->___fields()['archive'])): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-white<?php elseif(!$this->is('single')): ?>bg-grey<?php endif; ?>" gtools_scp_screen_capture_injected="true">
