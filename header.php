@@ -31,8 +31,19 @@
     <meta name="keywords" content="<?php $this->keywords(); ?>" />
     <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
     <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/xcode.min.css" rel="stylesheet">
-    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/emojify.js/1.1.0/css/data-uri/emojify.min.css" rel="stylesheet">
-    <link href="<?php $this->options->themeUrl('css/style.min.css?v2025071401'); ?>" rel="stylesheet">
+    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/emojify.js/1.1.0/css/basic/emojify.min.css" rel="stylesheet">
+    <link href="<?php $this->options->themeUrl('css/style.min.css?v2025071408'); ?>" rel="stylesheet">
+        <style>
+            /* 懒加载样式 */
+            .b-lazy {
+                transition: opacity 500ms ease-in-out;
+                max-width: 100%;
+                opacity: 0;
+            }
+            .b-lazy.b-loaded {
+                opacity: 1;
+            }
+        </style>
     <!--[if lt IE 9]>
     <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/respond.js/1.4.2/respond.min.js"></script>

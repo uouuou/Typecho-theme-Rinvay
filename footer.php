@@ -128,6 +128,20 @@ var binft = function (r) {
     i()
 };
 binft(document.getElementById('binft'));
+
+// 初始化图片懒加载
+var bLazy = new Blazy({
+    selector: '.b-lazy',
+    offset: 50,
+    successClass: 'b-loaded',
+    error: function(ele, msg){
+        if(msg === 'missing'){
+            console.log('图片懒加载错误: 缺少路径');
+        } else if(msg === 'invalid'){
+            console.log('图片懒加载错误: 无效路径');
+        }
+    }
+});
 </script>
 
 <?php if (($this->options->tableOfContents == 'able') && ($this->is('post'))): ?>
@@ -436,6 +450,23 @@ InstantClick.on('change', function(isInitialLoad){
         var blazy = new Blazy();
     });
     $(document).ready(function(){
+        // 重新初始化懒加载
+        if (typeof Blazy !== 'undefined') {
+            var bLazy = new Blazy({
+                selector: '.b-lazy',
+                offset: 50,
+                successClass: 'b-loaded',
+                error: function(ele, msg){
+                    if(msg === 'missing'){
+                        console.log('图片懒加载错误: 缺少路径');
+                    } else if(msg === 'invalid'){
+                        console.log('图片懒加载错误: 无效路径');
+                    }
+                }
+            });
+            console.log('Blazy initialized!');
+        }
+
         if (document.getElementsByName('text')[0] == null)
         {
             console.log('OωO boom!');

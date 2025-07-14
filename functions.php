@@ -25,13 +25,6 @@ function themeConfig($form) {
         'able', _t('启用 Emoji 表情'), _t('启用后可在编辑器里插入 Emoji 表情符号'));
     $form->addInput($emoji);
 
-    $links = new Typecho_Widget_Helper_Form_Element_Radio('links',
-        array('able' => _t('个站官方'),
-              'disable' => _t('Rinvay代理'),
-        ),
-        'able', _t('个站友链项目'), _t('选择个站友链API接口，若个站HTTPS接口不能使用可选择Rinvay代理接口'));
-    $form->addInput($links);
-
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
         array('able' => _t('InstantClick'),
             'disable' => _t('Pjax'),
@@ -253,20 +246,6 @@ function getRecentPosts($obj,$pageSize){
         $cid = $row['cid'];
         $apost = $obj->widget('Widget_Archive@post_'.$cid, 'type=post', 'cid='.$cid);
         $output = '<li><a href="'.$apost->permalink.'">'.$apost->title.'</a></li>';
-        echo $output;
-    }
-}
-
-function getHotTags($obj, $limit){
-    $db = Typecho_Db::get();
-    $tags = $db->fetchAll($db->select()
-        ->from('table.metas')
-        ->where('type = ?', 'tag')
-        ->order('count', Typecho_Db::SORT_DESC)
-        ->limit($limit));
-    foreach($tags as $tag){
-        $tag = $obj->filter($tag);
-        $output = '<li><a href="'.$tag['permalink'].'"># '.$tag['name'].'</a></li>';
         echo $output;
     }
 }
