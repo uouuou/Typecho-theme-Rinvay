@@ -46,23 +46,19 @@ $this->need('header.php');
 
 <div id="content" class="content">
   <?php
-
   $str = preg_replace('#<a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>#',
         '<a$1 href="$2$3"$5 target="_blank">', $this->content);
 
 $str = preg_replace('#<li><p>(.*?)</p></li>#',
         '<li>$1</li>', $str);
 
-  $themeUrl = $this->options->themeUrl('images/load.gif');
-
-  $str = preg_replace('#<li><img src="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)><a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$6$7" target="_blank" >
+$str = preg_replace('#<li><img src="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)><a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$6$7" target="_blank" >
         <div class="rinvay-links">
             <img class="b-lazy"
-	src="'.$themeUrl.'"  data-src="$1$2"$4>
+	src="https://rinvay.cc/img/load.gif"  data-src="$1$2"$4>
             <p>$10</p>
         </div>
     </a>',$str);
-
 
 $str = preg_replace('#<li>([1-9][0-9]{4,})<a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$3$4" target="_blank">
         <div class="rinvay-links"><img class="b-lazy b-loaded"
