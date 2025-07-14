@@ -7,13 +7,13 @@
     <link rel="dns-prefetch" href="<?php $this->options->cdn_add(); ?>" /><?php endif; ?>
     <link rel="dns-prefetch" href="//cdn.bootcss.com" />
     <link rel="dns-prefetch" href="//secure.gravatar.com" /><?php endif; ?>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="<?php $this->options->themeUrl('js/OwO.min.js?v20180718'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('js/blazy.js?v20180725'); ?>"></script>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js?v20250714"></script>
+    <script src="<?php $this->options->themeUrl('js/OwO.min.js?v20250714'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('js/blazy.js?v20250714'); ?>"></script>
     <?php if ($this->options->pjaxSet == 'able'): ?>
-    <script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20180705'); ?>" data-no-instant></script>
+    <script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20250714'); ?>" data-no-instant></script>
     <?php endif; ?>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/OwO.min.css?v20180718'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/OwO.min.css?v20250714'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -30,26 +30,15 @@
     ), '', ' - '); ?><?php $this->options->title(); ?></title>
     <meta name="keywords" content="<?php $this->keywords(); ?>" />
     <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
-    <link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/emojify.js/1.1.0/css/basic/emojify.min.css" rel="stylesheet">
-    <link href="<?php $this->options->themeUrl('css/style.min.css?20180619'); ?>" rel="stylesheet"> 
-    <!--[百度统计]-->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-              var hm = document.createElement("script");
-              hm.src = "https://hm.baidu.com/hm.js?e1ef4971fb8dd58f8e32a57a9ecb0382";
-              var s = document.getElementsByTagName("script")[0]; 
-              s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/xcode.min.css" rel="stylesheet">
+    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/emojify.js/1.1.0/css/data-uri/emojify.min.css" rel="stylesheet">
+    <link href="<?php $this->options->themeUrl('style.min.css?v20250714'); ?>" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!--base target="_blank"/-->
 </head>
-<body class="<?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-white<?php elseif(!$this->is('single')): ?>bg-grey<?php endif; ?>" gtools_scp_screen_capture_injected="true">
+<body class="<?php if (isset($this->___fields()['archive'])): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-white<?php elseif(!$this->is('single')): ?>bg-grey<?php endif; ?>" gtools_scp_screen_capture_injected="true">
 <!--[if lt IE 8]>
 <div class="browsehappy" role="dialog">
     当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
@@ -65,13 +54,16 @@
             <?php endif; ?>
         </a>
         <div class="navbar-menu">
-
+			<?php if ($this->options->categoryNav == 'able'): ?>
+            <?php $this->widget('Widget_Metas_Category_List')->to($category);?>
+            <?php while ($category->next()):?>
+            <a<?php if($this->is('post')):?> <?php if($this->category == $category->slug):?> class="current"<?php endif;?><?php else:?><?php if($this->is('category', $category->slug)):?> class="current"<?php endif;?> <?php endif;?> href="<?php $category->permalink();?>"><?php $category->name();?></a>
+            <?php endwhile; ?>
+            <?php endif; ?>
             <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
             <?php while($pages->next()): ?>
-
             <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
             <?php endwhile; ?>
-
         </div>
         <?php if($this->options->searchPage): ?>
         <a href="<?php $this->options->searchPage(); ?>" class="navbar-search">
@@ -87,15 +79,19 @@
             </form>
         </div>
         <?php endif;?>
-        <div class="navbar-mobile-menu" id="navbar-mobile-swith" onclick="">
+        <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
+			    <?php if ($this->options->categoryNav == 'able'): ?>
+                <?php $this->widget('Widget_Metas_Category_List')->to($category);?>
+                <?php while ($category->next()):?>
+                <li><a<?php if($this->is('post')):?> <?php if($this->category == $category->slug):?> class="current"<?php endif;?><?php else:?><?php if($this->is('category', $category->slug)):?> class="current"<?php endif;?> <?php endif;?> href="<?php $category->permalink();?>"><?php $category->name();?></a></li>
+                <?php endwhile; ?>
+                <?php endif; ?>
                 <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
                 <?php while($pages->next()): ?>
-
                 <li><a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a></li>
                 <?php endwhile; ?>
-
             </ul>
         </div>
     </div>

@@ -17,21 +17,21 @@ function themeConfig($form) {
     $beian = new Typecho_Widget_Helper_Form_Element_Text('beian', NULL, NULL, _t('ICP备案号'), _t('例如：渝ICP备15004857号-1,留空则不设置ICP备案号'));
     $form->addInput($beian->addRule('xssCheck', _t('请不要在ICP备案号中使用特殊字符')));
 
-    
+
     $emoji = new Typecho_Widget_Helper_Form_Element_Radio('emoji',
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
         ),
         'able', _t('启用 Emoji 表情'), _t('启用后可在编辑器里插入 Emoji 表情符号'));
-    $form->addInput($emoji);        
-        
+    $form->addInput($emoji);
+
     $links = new Typecho_Widget_Helper_Form_Element_Radio('links',
         array('able' => _t('个站官方'),
               'disable' => _t('Rinvay代理'),
         ),
         'able', _t('个站友链项目'), _t('选择个站友链API接口，若个站HTTPS接口不能使用可选择Rinvay代理接口'));
-    $form->addInput($links);    
-    
+    $form->addInput($links);
+
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
         array('able' => _t('InstantClick'),
             'disable' => _t('Pjax'),
@@ -66,6 +66,13 @@ function themeConfig($form) {
         ),
         'oneList', _t('首页文章列表设置'), _t('默认单栏，根据自己的喜好去做切换吧'));
     $form->addInput($postListSwitch);
+
+    $categoryNav = new Typecho_Widget_Helper_Form_Element_Radio('categoryNav',
+        array('able' => _t('启用'),
+            'disable' => _t('禁止'),
+        ),
+        'disable', _t('导航菜单是否启动分类'), _t('默认禁止，启用后导航菜单会展示分类'));
+    $form->addInput($categoryNav);
 
     $colorBgPosts = new Typecho_Widget_Helper_Form_Element_Radio('colorBgPosts',
         array('customColor' => _t('启用'),
@@ -130,12 +137,11 @@ function themeConfig($form) {
     $default_thumb = new Typecho_Widget_Helper_Form_Element_Text('default_thumb', NULL, '', _t('默认缩略图'),_t('文章没有图片时的默认缩略图，留空则无，一般为http://www.yourblog.com/image.png'));
     $form->addInput($default_thumb->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
     
-    
 }
 
 function themeInit($archive){
     Helper::options()->commentsMaxNestingLevels = 999;
-    if ($archive->is('index')) {
+    if ($archive->is('archive')) {
         $archive->parameter->pageSize = 12;
     }
 }
@@ -181,9 +187,17 @@ function parseContent($obj){
         $obj->content = str_ireplace($options->src_add,$options->cdn_add,$obj->content);
     }
     $obj->content = preg_replace("/<a href=\"([^\"]*)\">/i", "<a href=\"\\1\" target=\"_blank\">", $obj->content);
+    $obj->content = preg_replace('/<img(.*?)src(.*?)=(.*?)"(.*?)">/i', '<img$1src$3="$4"$5 loading="lazy">', $obj->content);
+    $obj->content = preg_replace_callback('/<h([1-5])>(.*?)<\/h\1>/i', function($matches) {
+        static $id = 1;
+        $hyphenated = 'anchor-' . $id;
+        $id++;
+        return '<h' . $matches[1] . ' id="' . $hyphenated . '">' . $matches[2] . '</h' . $matches[1] . '>';
+    }, $obj->content);
+
     $ms = $obj->content;
-    $urlreg = '/[A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+/u'; 
-    $arureg = '/#\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';  
+    $urlreg = '/[A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+/u';
+    $arureg = '/#\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';
     $paopaoreg = '/@\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';
     $paopao = gethosturl().'/usr/themes/Rinvay/images/biaoqing/paopao/';
     $aru = gethosturl().'/usr/themes/Rinvay/images/biaoqing/aru/';
@@ -191,15 +205,15 @@ function parseContent($obj){
     $aruid = preg_match_all ( $arureg , $ms , $namea );
     $aa = $namep[0];
     $bb = $namea[0];
-     for ($i=0; $i < sizeof($aa); $i++) { 
+     for ($i=0; $i < sizeof($aa); $i++) {
         $names = preg_match ( $urlreg , $aa[$i] , $hex );
         $nameid = preg_match ( $paopaoreg , $aa[$i] , $hexs );
         $namehex = preg_replace('/%/u','',urlencode($hex[0]));
         $imgurl = '<img class="rinvay" src="'.$paopao.$namehex.'_2x.png'.'" >';
         $ms = str_replace($hexs[0],$imgurl,$ms);
         $content = preg_replace($paopaoreg,$imgurl,$ms);
-     }                     
-     for ($l=0; $l < sizeof($bb); $l++) { 
+     }
+     for ($l=0; $l < sizeof($bb); $l++) {
         $names = preg_match ( $urlreg , $bb[$l] , $hex );
         $nameid = preg_match ( $arureg , $bb[$l] , $hexs );
         $namehex = preg_replace('/%/u','',urlencode($hex[0]));
@@ -207,7 +221,7 @@ function parseContent($obj){
         $ms = str_replace($hexs[0],$imgurl,$ms);
         $content = preg_replace($arureg,$imgurl,$ms);
      }
-    echo $ms;                       
+    echo $ms;
 }
 
 function getCommentAt($coid){
@@ -238,7 +252,21 @@ function getRecentPosts($obj,$pageSize){
     foreach($rows as $row){
         $cid = $row['cid'];
         $apost = $obj->widget('Widget_Archive@post_'.$cid, 'type=post', 'cid='.$cid);
-        $output = '<li><a href="'.$apost->permalink .'">'. $apost->title .'</a></li>';
+        $output = '<li><a href="'.$apost->permalink.'">'.$apost->title.'</a></li>';
+        echo $output;
+    }
+}
+
+function getHotTags($obj, $limit){
+    $db = Typecho_Db::get();
+    $tags = $db->fetchAll($db->select()
+        ->from('table.metas')
+        ->where('type = ?', 'tag')
+        ->order('count', Typecho_Db::SORT_DESC)
+        ->limit($limit));
+    foreach($tags as $tag){
+        $tag = $obj->filter($tag);
+        $output = '<li><a href="'.$tag['permalink'].'"># '.$tag['name'].'</a></li>';
         echo $output;
     }
 }
@@ -265,7 +293,7 @@ function theNext($widget, $default = NULL){
     $content = $db->fetchRow($sql);
     if ($content) {
         $content = $widget->filter($content);
-        $link = '<a href="' . $content['permalink'] . '" title="' . $content['title'] . '">←</a>';
+        $link = '<a href="'.$content['permalink'].'" title="'.$content['title'].'">←</a>';
         echo $link;
     } else {
         echo $default;
@@ -284,7 +312,7 @@ function thePrev($widget, $default = NULL){
     $content = $db->fetchRow($sql);
     if ($content) {
         $content = $widget->filter($content);
-        $link = '<a href="' . $content['permalink'] . '" title="' . $content['title'] . '">→</a>';
+        $link = '<a href="'.$content['permalink'].'" title="'.$content['title'].'">→</a>';
         echo $link;
     } else {
         echo $default;
@@ -347,7 +375,7 @@ function seoSetting($obj){
 date_default_timezone_set('Asia/Shanghai');
 /**
  * 秒转时间，格式 年 月 日 时 分 秒
- * 
+ *
  * @author Roogle
  * @return html
  */
@@ -377,7 +405,7 @@ function getBuildTime(){
             $time = ($time%60);
         }
         $value["seconds"] = floor($time);
-        
+
         // echo '已运行'.$value['years'].'年'.$value['days'].'天'.$value['hours'].'小时'.$value['minutes'].'分';
         echo 'Running '.$value['days'].'Day'.$value['hours'].'Hor'.$value['minutes'].'Min';
     }else{
@@ -433,7 +461,7 @@ return $r;
 }
 //判断内容页是否百度收录
 function baidu_record() {
-$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
+$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 if(checkBaidu($url)==1)
 {echo "百度已收录";
@@ -441,18 +469,18 @@ if(checkBaidu($url)==1)
 else
 {echo "<a style=\"color:red;\" rel=\"external nofollow\" title=\"点击提交收录！\" target=\"_blank\" href=\"http://zhanzhang.baidu.com/sitesubmit/index?sitename=$url\">百度未收录</a>";}
 }
-  function checkBaidu($url) { 
-    $url = 'http://www.baidu.com/s?wd=' . urlencode($url); 
-    $curl = curl_init(); 
-    curl_setopt($curl, CURLOPT_URL, $url); 
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); 
-    $rs = curl_exec($curl); 
-    curl_close($curl); 
-    if (!strpos($rs, '没有找到')) { //没有找到说明已被百度收录 
-        return 1; 
-    } else { 
-        return -1; 
-    } 
+  function checkBaidu($url) {
+    $url = 'http://www.baidu.com/s?wd=' . urlencode($url);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $rs = curl_exec($curl);
+    curl_close($curl);
+    if (!strpos($rs, '没有找到')) { //没有找到说明已被百度收录
+        return 1;
+    } else {
+        return -1;
+    }
 }
 
 function gethosturl(){
