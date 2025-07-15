@@ -5,6 +5,7 @@
 	-ms-user-select:none;
 	user-select:none;
 	max-width:100%;
+	display: inline-block;
 }
 .OwO img{
     height: 30px;
@@ -132,6 +133,12 @@
 .OwO .OwO-body .OwO-bar .OwO-packages li:nth-child(1) {
 	border-radius:0 0 0 3px
 }
+
+.OwO .OwO-body .OwO-bar .OwO-packages .OwO-span {
+	display:inline-block;
+	width:auto!important;
+}
+
 .OwO .OwO-body .OwO-bar .OwO-packages li:hover {
 	background:#eee
 }

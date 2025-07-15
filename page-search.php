@@ -19,9 +19,10 @@ $this->need('header.php');
             <?php $this->widget('Widget_Metas_Tag_Cloud', 'sort=count&ignoreZeroCount=1&desc=1&limit=50')->to($tags); ?>
             <div class="search-tags">
                 <?php parseContent($this); ?>
-                <?php if($tags->have()): ?>
+                <?php if ($tags->have()): ?>
                     <?php while ($tags->next()): ?>
-                        <a href="<?php $tags->permalink(); ?>" class="<?php if ($this->options->colorBgPosts == 'defaultColor'): ?> bg-white<?php elseif ($this->options->colorBgPosts == 'customColor'): ?>text-white bg-<?php echo randBgColor(); ?><?php endif;?>"># <?php $tags->name(); ?>(<?php $tags->count(); ?>)</a>
+                        <a href="<?php $tags->permalink(); ?>" class="<?php if ($this->options->colorBgPosts == 'defaultColor'): ?> bg-white<?php elseif ($this->options->colorBgPosts == 'customColor'): ?>text-white bg-<?php echo randBgColor(); ?><?php endif; ?>"># <?php $tags->name(); ?>
+                            (<?php $tags->count(); ?>)</a>
                     <?php endwhile; ?>
                 <?php else: ?>
                     <p> Nothing here ! </p>

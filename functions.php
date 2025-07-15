@@ -1,7 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-function themeConfig($form) {
+function themeConfig($form)
+{
     $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, NULL, _t('页头logo地址'), _t('一般为http://www.yourblog.com/image.png,支持 https:// 或 //,留空则使用站点名称'));
     $form->addInput($logoUrl->addRule('xssCheck', _t('请不要在图片链接中使用特殊字符')));
     $footerLogoUrl = new Typecho_Widget_Helper_Form_Element_Text('footerLogoUrl', NULL, NULL, _t('页尾logo地址'), _t('一般为http://www.yourblog.com/image.png,支持 https:// 或 //,留空则使用站点名称'));
@@ -127,61 +128,66 @@ function themeConfig($form) {
     $form->addInput($srcAddress->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
     $cdnAddress = new Typecho_Widget_Helper_Form_Element_Text('cdn_add', NULL, NULL, _t('图片CDN替换后地址'), _t('即你的七牛云存储域名，一般为http://yourblog.qiniudn.com/，可能也支持其他有镜像功能的CDN服务'));
     $form->addInput($cdnAddress->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
-    $default_thumb = new Typecho_Widget_Helper_Form_Element_Text('default_thumb', NULL, '', _t('默认缩略图'),_t('文章没有图片时的默认缩略图，留空则无，一般为http://www.yourblog.com/image.png'));
+    $default_thumb = new Typecho_Widget_Helper_Form_Element_Text('default_thumb', NULL, '', _t('默认缩略图'), _t('文章没有图片时的默认缩略图，留空则无，一般为http://www.yourblog.com/image.png'));
     $form->addInput($default_thumb->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
-    
+
 }
 
-function themeInit($archive){
+function themeInit($archive)
+{
     Helper::options()->commentsMaxNestingLevels = 999;
     if ($archive->is('archive')) {
         $archive->parameter->pageSize = 12;
     }
 }
-function showThumb($obj,$size=null,$link=false){
-    preg_match_all( "/<[img|IMG].*?src=[\'|\"](.*?)[\'|\"].*?[\/]?>/", $obj->content, $matches );
+
+function showThumb($obj, $size = null, $link = false)
+{
+    preg_match_all("/<[img|IMG].*?src=[\'|\"](.*?)[\'|\"].*?[\/]?>/", $obj->content, $matches);
     $thumb = '';
     $options = Typecho_Widget::widget('Widget_Options');
     $attach = $obj->attachments(1)->attachment;
-    if (isset($attach->isImage) && $attach->isImage == 1){
+    if (isset($attach->isImage) && $attach->isImage == 1) {
         $thumb = $attach->url;
-        if(!empty($options->src_add) && !empty($options->cdn_add)){
-            $thumb = str_ireplace($options->src_add,$options->cdn_add,$thumb);
+        if (!empty($options->src_add) && !empty($options->cdn_add)) {
+            $thumb = str_ireplace($options->src_add, $options->cdn_add, $thumb);
         }
-    }elseif(isset($matches[1][0])){
+    } elseif (isset($matches[1][0])) {
         $thumb = $matches[1][0];
-        if(!empty($options->src_add) && !empty($options->cdn_add)){
-            $thumb = str_ireplace($options->src_add,$options->cdn_add,$thumb);
+        if (!empty($options->src_add) && !empty($options->cdn_add)) {
+            $thumb = str_ireplace($options->src_add, $options->cdn_add, $thumb);
         }
     }
-    if(empty($thumb) && empty($options->default_thumb)){
+    if (empty($thumb) && empty($options->default_thumb)) {
         return '';
-    }else{
+    } else {
         $thumb = empty($thumb) ? $options->default_thumb : $thumb;
     }
-    if($link){
+    if ($link) {
         return $thumb;
     }
 }
 
-function parseFieldsThumb($obj){
+function parseFieldsThumb($obj)
+{
     $options = Typecho_Widget::widget('Widget_Options');
-    if(!empty($options->src_add) && !empty($options->cdn_add)){
-        $fieldsThumb = str_ireplace($options->src_add,$options->cdn_add,$obj->fields->thumb);
+    if (!empty($options->src_add) && !empty($options->cdn_add)) {
+        $fieldsThumb = str_ireplace($options->src_add, $options->cdn_add, $obj->fields->thumb);
         echo trim($fieldsThumb);
-    }else{
+    } else {
         return $obj->fields->thumb();
     }
 }
 
-function parseContent($obj){
+function parseContent($obj)
+{
     $options = Typecho_Widget::widget('Widget_Options');
-    if(!empty($options->src_add) && !empty($options->cdn_add)){
-        $obj->content = str_ireplace($options->src_add,$options->cdn_add,$obj->content);
+    if (!empty($options->src_add) && !empty($options->cdn_add)) {
+        $obj->content = str_ireplace($options->src_add, $options->cdn_add, $obj->content);
     }
     $obj->content = preg_replace("/<a href=\"([^\"]*)\">/i", "<a href=\"\\1\" target=\"_blank\">", $obj->content);
     $obj->content = preg_replace('/<img(.*?)src(.*?)=(.*?)"(.*?)">/i', '<img$1src$3="$4"$5 loading="lazy">', $obj->content);
-    $obj->content = preg_replace_callback('/<h([1-5])>(.*?)<\/h\1>/i', function($matches) {
+    $obj->content = preg_replace_callback('/<h([1-5])>(.*?)<\/h\1>/i', function ($matches) {
         static $id = 1;
         $hyphenated = 'anchor-' . $id;
         $id++;
@@ -192,33 +198,34 @@ function parseContent($obj){
     $urlreg = '/[A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+/u';
     $arureg = '/#\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';
     $paopaoreg = '/@\([A-Za-z0-9_\-\x{4e00}-\x{9fa5}]+\)/u';
-    $paopao = gethosturl().'/usr/themes/Rinvay/images/biaoqing/paopao/';
-    $aru = gethosturl().'/usr/themes/Rinvay/images/biaoqing/aru/';
-    $paopaoid = preg_match_all ( $paopaoreg , $ms , $namep );
-    $aruid = preg_match_all ( $arureg , $ms , $namea );
+    $paopao = gethosturl() . '/usr/themes/Rinvay/images/biaoqing/paopao/';
+    $aru = gethosturl() . '/usr/themes/Rinvay/images/biaoqing/aru/';
+    $paopaoid = preg_match_all($paopaoreg, $ms, $namep);
+    $aruid = preg_match_all($arureg, $ms, $namea);
     $aa = $namep[0];
     $bb = $namea[0];
-     for ($i=0; $i < sizeof($aa); $i++) {
-        $names = preg_match ( $urlreg , $aa[$i] , $hex );
-        $nameid = preg_match ( $paopaoreg , $aa[$i] , $hexs );
-        $namehex = preg_replace('/%/u','',urlencode($hex[0]));
-        $imgurl = '<img class="rinvay" src="'.$paopao.$namehex.'_2x.png'.'" >';
-        $ms = str_replace($hexs[0],$imgurl,$ms);
-        $content = preg_replace($paopaoreg,$imgurl,$ms);
-     }
-     for ($l=0; $l < sizeof($bb); $l++) {
-        $names = preg_match ( $urlreg , $bb[$l] , $hex );
-        $nameid = preg_match ( $arureg , $bb[$l] , $hexs );
-        $namehex = preg_replace('/%/u','',urlencode($hex[0]));
-        $imgurl = '<img class="rinvay" src="'.$aru.$namehex.'_2x.png'.'" >';
-        $ms = str_replace($hexs[0],$imgurl,$ms);
-        $content = preg_replace($arureg,$imgurl,$ms);
-     }
+    for ($i = 0; $i < sizeof($aa); $i++) {
+        $names = preg_match($urlreg, $aa[$i], $hex);
+        $nameid = preg_match($paopaoreg, $aa[$i], $hexs);
+        $namehex = preg_replace('/%/u', '', urlencode($hex[0]));
+        $imgurl = '<img class="rinvay" src="' . $paopao . $namehex . '_2x.png' . '" >';
+        $ms = str_replace($hexs[0], $imgurl, $ms);
+        $content = preg_replace($paopaoreg, $imgurl, $ms);
+    }
+    for ($l = 0; $l < sizeof($bb); $l++) {
+        $names = preg_match($urlreg, $bb[$l], $hex);
+        $nameid = preg_match($arureg, $bb[$l], $hexs);
+        $namehex = preg_replace('/%/u', '', urlencode($hex[0]));
+        $imgurl = '<img class="rinvay" src="' . $aru . $namehex . '_2x.png' . '" >';
+        $ms = str_replace($hexs[0], $imgurl, $ms);
+        $content = preg_replace($arureg, $imgurl, $ms);
+    }
     echo $ms;
 }
 
-function getCommentAt($coid){
-    $db   = Typecho_Db::get();
+function getCommentAt($coid)
+{
+    $db = Typecho_Db::get();
     $prow = $db->fetchRow($db->select('parent')
         ->from('table.comments')
         ->where('coid = ? AND status = ?', $coid, 'approved'));
@@ -228,39 +235,43 @@ function getCommentAt($coid){
             ->from('table.comments')
             ->where('coid = ? AND status = ?', $parent, 'approved'));
         $author = $arow['author'];
-        $href   = '<a href="#comment-'.$parent.'">@'.$author.'</a>';
+        $href = '<a href="#comment-' . $parent . '">@' . $author . '</a>';
         echo $href;
     } else {
         echo '';
     }
 }
 
-function getRecentPosts($obj,$pageSize){
+function getRecentPosts($obj, $pageSize)
+{
     $db = Typecho_Db::get();
     $rows = $db->fetchAll($db->select('cid')
-       ->from('table.contents')
-       ->where('type = ? AND status = ?', 'post', 'publish')
-       ->order('created', Typecho_Db::SORT_DESC)
-       ->limit($pageSize));
-    foreach($rows as $row){
+        ->from('table.contents')
+        ->where('type = ? AND status = ?', 'post', 'publish')
+        ->order('created', Typecho_Db::SORT_DESC)
+        ->limit($pageSize));
+    foreach ($rows as $row) {
         $cid = $row['cid'];
-        $apost = $obj->widget('Widget_Archive@post_'.$cid, 'type=post', 'cid='.$cid);
-        $output = '<li><a href="'.$apost->permalink.'">'.$apost->title.'</a></li>';
+        $apost = $obj->widget('Widget_Archive@post_' . $cid, 'type=post', 'cid=' . $cid);
+        $output = '<li><a href="' . $apost->permalink . '">' . $apost->title . '</a></li>';
         echo $output;
     }
 }
 
-function randBgIco(){
-    $bgIco=array('book','game','note','chat','code','image','web','link','design','lock');
-    return $bgIco[mt_rand(0,9)];
+function randBgIco()
+{
+    $bgIco = array('book', 'game', 'note', 'chat', 'code', 'image', 'web', 'link', 'design', 'lock');
+    return $bgIco[mt_rand(0, 9)];
 }
 
-function randBgColor(){
-    $bgColor=array('blue','purple','green','yellow','red','orange');
-    return $bgColor[mt_rand(0,5)];
+function randBgColor()
+{
+    $bgColor = array('blue', 'purple', 'green', 'yellow', 'red', 'orange');
+    return $bgColor[mt_rand(0, 5)];
 }
 
-function theNext($widget, $default = NULL){
+function theNext($widget, $default = NULL)
+{
     $db = Typecho_Db::get();
     $sql = $db->select()->from('table.contents')
         ->where('table.contents.created > ?', $widget->created)
@@ -272,14 +283,15 @@ function theNext($widget, $default = NULL){
     $content = $db->fetchRow($sql);
     if ($content) {
         $content = $widget->filter($content);
-        $link = '<a href="'.$content['permalink'].'" title="'.$content['title'].'">←</a>';
+        $link = '<a href="' . $content['permalink'] . '" title="' . $content['title'] . '">←</a>';
         echo $link;
     } else {
         echo $default;
     }
 }
 
-function thePrev($widget, $default = NULL){
+function thePrev($widget, $default = NULL)
+{
     $db = Typecho_Db::get();
     $sql = $db->select()->from('table.contents')
         ->where('table.contents.created < ?', $widget->created)
@@ -291,14 +303,15 @@ function thePrev($widget, $default = NULL){
     $content = $db->fetchRow($sql);
     if ($content) {
         $content = $widget->filter($content);
-        $link = '<a href="'.$content['permalink'].'" title="'.$content['title'].'">→</a>';
+        $link = '<a href="' . $content['permalink'] . '" title="' . $content['title'] . '">→</a>';
         echo $link;
     } else {
         echo $default;
     }
 }
 
-function compressHtml($html_source) {
+function compressHtml($html_source)
+{
     $chunks = preg_split('/(<!--<nocompress>-->.*?<!--<\/nocompress>-->|<nocompress>.*?<\/nocompress>|<pre.*?\/pre>|<textarea.*?\/textarea>|<script.*?\/script>)/msi', $html_source, -1, PREG_SPLIT_DELIM_CAPTURE);
     $compress = '';
     foreach ($chunks as $c) {
@@ -347,45 +360,48 @@ function compressHtml($html_source) {
     return $compress;
 }
 
-function seoSetting($obj){
+function seoSetting($obj)
+{
 
 }
+
 // 设置时区
 date_default_timezone_set('Asia/Shanghai');
 /**
  * 秒转时间，格式 年 月 日 时 分 秒
  *
- * @author Roogle
  * @return html
+ * @author Roogle
  */
-function getBuildTime(){
+function getBuildTime()
+{
     // 在下面按格式输入本站创建的时间
     $site_create_time = strtotime('2018-06-10 00:00:00');
     $time = time() - $site_create_time;
-    if(is_numeric($time)){
+    if (is_numeric($time)) {
         $value = array(
             "years" => 0, "days" => 0, "hours" => 0,
             "minutes" => 0, "seconds" => 0,
         );
         // if($time >= 31556926){
-            // $value["years"] = floor($time/31556926);
-            // $time = ($time%31556926);
+        // $value["years"] = floor($time/31556926);
+        // $time = ($time%31556926);
         // }
-        if($time >= 86400){
-            $value["days"] = floor($time/86400);
-            $time = ($time%86400);
+        if ($time >= 86400) {
+            $value["days"] = floor($time / 86400);
+            $time = ($time % 86400);
         }
-        if($time >= 3600){
-            $value["hours"] = floor($time/3600);
-            $time = ($time%3600);
+        if ($time >= 3600) {
+            $value["hours"] = floor($time / 3600);
+            $time = ($time % 3600);
         }
-        if($time >= 60){
-            $value["minutes"] = floor($time/60);
-            $time = ($time%60);
+        if ($time >= 60) {
+            $value["minutes"] = floor($time / 60);
+            $time = ($time % 60);
         }
         $value["seconds"] = floor($time);
-        echo 'Running '.$value['days'].'Day'.$value['hours'].'Hor'.$value['minutes'].'Min';
-    }else{
+        echo 'Running ' . $value['days'] . 'Day' . $value['hours'] . 'Hor' . $value['minutes'] . 'Min';
+    } else {
         echo '';
     }
 
@@ -393,8 +409,8 @@ function getBuildTime(){
 
 function get_post_view($archive)
 {
-    $cid    = $archive->cid;
-    $db     = Typecho_Db::get();
+    $cid = $archive->cid;
+    $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
     if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')))) {
         $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
@@ -403,50 +419,58 @@ function get_post_view($archive)
     }
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     if ($archive->is('single')) {
- $views = Typecho_Cookie::get('extend_contents_views');
-        if(empty($views)){
+        $views = Typecho_Cookie::get('extend_contents_views');
+        if (empty($views)) {
             $views = array();
-        }else{
+        } else {
             $views = explode(',', $views);
         }
-if(!in_array($cid,$views)){
-       $db->query($db->update('table.contents')->rows(array('views' => (int) $row['views'] + 1))->where('cid = ?', $cid));
-array_push($views, $cid);
+        if (!in_array($cid, $views)) {
+            $db->query($db->update('table.contents')->rows(array('views' => (int)$row['views'] + 1))->where('cid = ?', $cid));
+            array_push($views, $cid);
             $views = implode(',', $views);
             Typecho_Cookie::set('extend_contents_views', $views); //记录查看cookie
         }
     }
     echo $row['views'];
 }
-//判断页面加载速度
-function timer_start() {
-global $timestart;
-$mtime = explode( ' ', microtime() );
-$timestart = $mtime[1] + $mtime[0];
-return true;
-}
-timer_start();
-function timer_stop( $display = 0, $precision = 3 ) {
-global $timestart, $timeend;
-$mtime = explode( ' ', microtime() );
-$timeend = $mtime[1] + $mtime[0];
-$timetotal = $timeend - $timestart;
-$r = number_format( $timetotal, $precision );
-if ( $display )
-echo $r;
-return $r;
-}
-//判断内容页是否百度收录
-function baidu_record() {
-$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
-if(checkBaidu($url)==1)
-{echo "百度已收录";
+//判断页面加载速度
+function timer_start()
+{
+    global $timestart;
+    $mtime = explode(' ', microtime());
+    $timestart = $mtime[1] + $mtime[0];
+    return true;
 }
-else
-{echo "<a style=\"color:red;\" rel=\"external nofollow\" title=\"点击提交收录！\" target=\"_blank\" href=\"http://zhanzhang.baidu.com/sitesubmit/index?sitename=$url\">百度未收录</a>";}
+
+timer_start();
+function timer_stop($display = 0, $precision = 3)
+{
+    global $timestart, $timeend;
+    $mtime = explode(' ', microtime());
+    $timeend = $mtime[1] + $mtime[0];
+    $timetotal = $timeend - $timestart;
+    $r = number_format($timetotal, $precision);
+    if ($display)
+        echo $r;
+    return $r;
 }
-  function checkBaidu($url) {
+
+//判断内容页是否百度收录
+function baidu_record()
+{
+    $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+    if (checkBaidu($url) == 1) {
+        echo "百度已收录";
+    } else {
+        echo "<a style=\"color:red;\" rel=\"external nofollow\" title=\"点击提交收录！\" target=\"_blank\" href=\"http://zhanzhang.baidu.com/sitesubmit/index?sitename=$url\">百度未收录</a>";
+    }
+}
+
+function checkBaidu($url)
+{
     $url = 'http://www.baidu.com/s?wd=' . urlencode($url);
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -460,7 +484,8 @@ else
     }
 }
 
-function gethosturl(){
+function gethosturl()
+{
     $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
     return $http_type . $_SERVER['HTTP_HOST'];
 }
