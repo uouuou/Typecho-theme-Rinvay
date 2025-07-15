@@ -25,6 +25,13 @@ https://www.rinvay.cc
 
 ## 主题亮点
 
+#### 2025/07/15
+- 发布v2.0.7
+- 修复了部分样式问题
+- 修复了部分 BUG
+- 修复了部分图片懒加载问题
+- 修改X的部分信息
+
 #### 2025/07/14
 
 -   跟进 pinghsu 的部分修改
@@ -145,26 +152,6 @@ https://www.rinvay.cc
 - ![Rinvay][211][Rinvay][112]
 [112]: https://www.rinvay.cc/
 [211]: https://pic.leus.cc/images/9a48573151fb54e21a4112a0a0226e7f.md.png
-```
-
-如果要使用来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>只需要在适当的位置插入如下这段话，即可获得和我一模一样的个站友链体验。
-
-```html
-*这些友情链接是来自个站商店的一个子项目 <a style="color:#FA8072" href="https://storeweb.cn" target="_blank">『小红帽友链』</a>* !!!
-<ul>
-    <div class="contents">
-        <script type="text/html" id="links-template" data-no-instant>
-            <a href="%%domain%%" target="_blank">
-                <div class="rinvay-links">
-                    <img class="rinvay" src="%%logo_cn%%" />
-                    <p>%%name%%</p>
-                    <i class="tip %%update_hide%%"> %%update_count%% </i>
-                </div>
-            </a>
-        </script>
-    </div>
-</ul>
-!!!
 ```
 
 **独立搜索页**
