@@ -83,7 +83,7 @@
                 });
             }
         };
-        scope.destroy = function() {            
+        scope.destroy = function() {
             var util = scope._util;
             if (scope.options.container) {
                 each(scope.options.container, function(object) {
@@ -188,16 +188,16 @@
                     return false;
                 }
             }
-        }      
+        }
         return inView(rect, _viewport);
     }
 
     function inView(rect, viewport){
         // Intersection
         return rect.right >= viewport.left &&
-               rect.bottom >= viewport.top && 
-               rect.left <= viewport.right && 
-               rect.top <= viewport.bottom;
+            rect.bottom >= viewport.top &&
+            rect.left <= viewport.right &&
+            rect.top <= viewport.bottom;
     }
 
     function loadElement(ele, force, options) {
@@ -215,7 +215,7 @@
                 if (isImage || ele.src === undefined) {
                     var img = new Image();
                     // using EventListener instead of onerror and onload
-                    // due to bug introduced in chrome v50 
+                    // due to bug introduced in chrome v50
                     // (https://productforums.google.com/forum/#!topic/chrome/p51Lk7vnP2o)
                     var onErrorHandler = function() {
                         if (options.error) options.error(ele, "invalid");
@@ -229,7 +229,7 @@
                             if(!isPicture) {
                                 handleSources(ele, src, srcset);
                             }
-                        // or background-image
+                            // or background-image
                         } else {
                             ele.style.backgroundImage = 'url("' + src + '")';
                         }
@@ -237,7 +237,7 @@
                         unbindEvent(img, 'load', onLoadHandler);
                         unbindEvent(img, 'error', onErrorHandler);
                     };
-                    
+
                     // Picture element
                     if (isPicture) {
                         img = ele; // Image tag inside picture element wont get preloaded
@@ -292,7 +292,7 @@
         if(srcset) {
             setAttr(ele, _attrSrcset, srcset); //srcset
         }
-        ele.src = src; //src 
+        ele.src = src; //src
     }
 
     function setAttr(ele, attr, value){
@@ -304,7 +304,7 @@
     }
 
     function removeAttr(ele, attr){
-        ele.removeAttribute(attr); 
+        ele.removeAttribute(attr);
     }
 
     function equal(ele, str) {

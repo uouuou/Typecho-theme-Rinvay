@@ -10,7 +10,7 @@
         <link rel="dns-prefetch" href="//secure.gravatar.com" /><?php endif; ?>
     <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js?v20250714"></script>
     <script src="<?php $this->options->themeUrl('js/OwO.min.js?v20250714'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('js/blazy.js?v20250714'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('js/blazy.min.js?v20250714'); ?>"></script>
     <?php if ($this->options->pjaxSet == 'able'): ?>
         <script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20250714'); ?>" data-no-instant></script>
     <?php endif; ?>

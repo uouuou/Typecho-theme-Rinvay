@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /**
  * links
  * 
@@ -45,24 +46,28 @@ $this->need('header.php');
 	</div>
 
 <div id="content" class="content">
-  <?php
-  $str = preg_replace('#<a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>#',
+
+<?php
+$str = preg_replace('#<a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>#',
         '<a$1 href="$2$3"$5 target="_blank">', $this->content);
 
 $str = preg_replace('#<li><p>(.*?)</p></li>#',
         '<li>$1</li>', $str);
 
+// 获取主题中load.gif的URL
+ob_start();
+$this->options->themeUrl('images/load.gif');
+$loadGifUrl = ob_get_clean();
 $str = preg_replace('#<li><img src="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)><a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$6$7" target="_blank" >
         <div class="rinvay-links">
-            <img class="b-lazy"
-	src="https://rinvay.cc/img/load.gif"  data-src="$1$2"$4>
+            <img class="b-lazy" src="'.$loadGifUrl.'"  data-src="$1$2"$4>
             <p>$10</p>
         </div>
     </a>',$str);
 
 $str = preg_replace('#<li>([1-9][0-9]{4,})<a(.*?) href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></li>#','<a href="$3$4" target="_blank">
-        <div class="rinvay-links"><img class="b-lazy b-loaded"
-	src="https://q.qlogo.cn/g?b=qq&nk=$1&s=100">
+        <div class="rinvay-links">
+        <img class="b-lazy b-loaded" src="https://q.qlogo.cn/g?b=qq&nk=$1&s=100">
             <p>$7</p>
         </div>
     </a>',$str);
@@ -78,4 +83,4 @@ $str = preg_replace('#<li><a href="([^"]*/)?(([^"/]*)\.[^"]*)"(.*?)>(.*?)</a></l
 </article>
 
 <?php $this->need('comments.php'); ?>
-<?php $this->need('footer.php');?>
+<?php $this->need('footer.php'); ?>

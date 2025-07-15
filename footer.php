@@ -13,8 +13,8 @@
             <?php if ($this->options->socialgithub): ?>
                 <a class="social github" target="blank" href="<?php $this->options->socialgithub(); ?>">GITHUB</a>
             <?php endif; ?>
-            <?php if ($this->options->socialtwitter): ?>
-                <a class="social twitter" target="blank" href="<?php $this->options->socialtwitter(); ?>">TWITTER</a>
+            <?php if ($this->options->socialX): ?>
+                <a class="social twitter" target="blank" href="<?php $this->options->socialX(); ?>">X</a>
             <?php endif; ?>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     </a>
                     <div class="info-text"> 
                         <p>Theme is <a href="https://www.rinvay.cc/archives/225/" target="_blank">Rinvay</a> by <a href="https://www.rinvay.cc" target="_blank">Rinvay.H</a></p>
-                        <p>Powered by Typecho V1.2</p>
+                        <p>Powered by Typecho V1.2.1</p>
                         <p><?php getBuildTime(); ?></p>
                         <?php if($this->options->beian): ?>
                         <p><a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow"><?php $this->options->beian(); ?></a></p>

@@ -119,8 +119,8 @@ function themeConfig($form) {
     $form->addInput($socialzhihu->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
     $socialgithub = new Typecho_Widget_Helper_Form_Element_Text('socialgithub', NULL, NULL, _t('输入GitHub链接'), _t('在这里输入GitHub链接,支持 http:// 或 https://或 //'));
     $form->addInput($socialgithub->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
-    $socialtwitter = new Typecho_Widget_Helper_Form_Element_Text('socialtwitter', NULL, NULL, _t('输入Twitter链接'), _t('在这里输入twitter链接,支持 http:// 或 https:// 或 //'));
-    $form->addInput($socialtwitter->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
+    $socialX = new Typecho_Widget_Helper_Form_Element_Text('socialX', NULL, NULL, _t('输入X链接'), _t('在这里输入X链接,支持 http:// 或 https:// 或 //'));
+    $form->addInput($socialX->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
 
 
     $srcAddress = new Typecho_Widget_Helper_Form_Element_Text('src_add', NULL, NULL, _t('图片CDN替换前地址'), _t('即你的附件存放链接，一般为http://www.yourblog.com/usr/uploads/'));
@@ -384,8 +384,6 @@ function getBuildTime(){
             $time = ($time%60);
         }
         $value["seconds"] = floor($time);
-
-        // echo '已运行'.$value['years'].'年'.$value['days'].'天'.$value['hours'].'小时'.$value['minutes'].'分';
         echo 'Running '.$value['days'].'Day'.$value['hours'].'Hor'.$value['minutes'].'Min';
     }else{
         echo '';
