@@ -115,7 +115,7 @@ $comments->alt(' comment-odd', ' comment-even');
             <button type="submit" class="submit" id="misubmit">回复</button>
             <?php $security = $this->widget('Widget_Security'); ?>
             <input type="hidden" name="_" value="<?php echo $security->getToken($this->request->getReferer())?>">
-			<div class="OwO" data-no-instant></div>
+			<div class="OwO" data-no-instant>OωO</div>
         </form>
 		<?php endif; ?>
         <?php else : ?>
@@ -153,7 +153,7 @@ $comments->alt(' comment-odd', ' comment-even');
                 target: document.getElementsByName('text')[0],
                 api: '<?php $this->options->themeUrl('js/OwO.json?v20250714'); ?>',
                 position: 'down',
-                width: '100%;',
+                width: '100%',
                 maxHeight: '250px'
             });
         }
